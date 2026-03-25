@@ -171,7 +171,7 @@
     width: 280px;
     background: var(--dark);
     border-radius: 44px;
-    padding: 12px;
+    padding: 12px 12px 20px;
     box-shadow: 0 40px 80px rgba(26,26,24,0.25), 0 0 0 1px rgba(255,255,255,0.08);
     position: relative;
     animation: float 6s ease-in-out infinite;
@@ -193,8 +193,73 @@
     background: #faf8f4;
     border-radius: 34px;
     overflow: hidden;
-    padding: 20px 16px;
-    min-height: 520px;
+    height: 560px;
+    position: relative;
+  }
+
+  /* Scrollable inner content */
+  .phone-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px 16px 80px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .phone-scroll::-webkit-scrollbar { display: none; }
+
+  /* Bottom nav bar */
+  .phone-nav {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    border-radius: 0 0 34px 34px;
+    padding: 10px 0 14px;
+    display: flex; justify-content: space-around;
+    z-index: 10;
+  }
+  .phone-nav-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 9px; color: var(--text-light);
+    font-weight: 500;
+  }
+  .phone-nav-item.active { color: var(--green); }
+  .phone-nav-icon { font-size: 16px; line-height: 1; }
+
+  .phone-scroll-fade {
+    position: absolute;
+    bottom: 50px; left: 0; right: 0;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, #faf8f4);
+    pointer-events: none;
+    z-index: 8;
+  }
+  .phone-scroll-hint {
+    position: absolute;
+    bottom: 58px; left: 50%; 
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    z-index: 9;
+    animation: hintFade 2.5s ease-in-out 1s forwards;
+    opacity: 0;
+  }
+  @keyframes hintFade {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .scroll-chevron {
+    width: 10px; height: 10px;
+    border-right: 2px solid rgba(74,124,47,0.7);
+    border-bottom: 2px solid rgba(74,124,47,0.7);
+    transform: rotate(45deg);
+    animation: chevronBounce 0.7s ease-in-out infinite alternate;
+  }
+  .scroll-chevron.c2 { animation-delay: 0.15s; margin-top: -5px; opacity: 0.5; }
+  @keyframes chevronBounce {
+    0% { transform: rotate(45deg) translateY(-2px); }
+    100% { transform: rotate(45deg) translateY(2px); }
   }
 
   .screen-header {
@@ -291,20 +356,42 @@
   /* TRUST BAR */
   .trust-bar {
     background: var(--dark);
-    padding: 28px 40px;
-    display: flex; justify-content: center; align-items: center;
-    gap: 64px;
-    flex-wrap: wrap;
+    padding: 20px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .trust-bar::before, .trust-bar::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+    pointer-events: none;
+  }
+  .trust-bar::before { left: 0; background: linear-gradient(to right, #1a1a18, transparent); }
+  .trust-bar::after { right: 0; background: linear-gradient(to left, #1a1a18, transparent); }
+  .trust-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 22s linear infinite;
+  }
+  .trust-track:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
   .trust-item {
-    text-align: center;
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 40px;
+    white-space: nowrap;
+  }
+  .trust-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--green); flex-shrink: 0;
   }
   .trust-num {
     font-family: 'DM Serif Display', serif;
-    font-size: 28px; color: var(--cream);
+    font-size: 20px; color: var(--cream);
     line-height: 1;
   }
-  .trust-label { font-size: 12px; color: rgba(250,248,244,0.5); margin-top: 4px; }
+  .trust-label { font-size: 13px; color: rgba(250,248,244,0.5); margin-left: 2px; }
 
   /* SECTION BASE */
   section {
@@ -609,35 +696,46 @@
   }
   .social-link:hover { border-color: rgba(255,255,255,0.3); color: var(--cream); }
 
+  .hero-badges-row { display: none; }
+
   /* SCROLL ANIMATIONS */
   .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .fade-up:nth-child(2) { transition-delay: 0.1s; }
   .fade-up:nth-child(3) { transition-delay: 0.2s; }
   .fade-up:nth-child(4) { transition-delay: 0.3s; }
 
+  .badges-row {
+    display: none; /* hidden on desktop - desktop uses absolute positioned badges */
+  }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; gap: 48px; padding: 120px 20px 60px; }
-    .hero-visual { order: -1; }
-    .phone-frame { width: 220px; }
-    .float-badge.left, .float-badge.right { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 32px; padding: 120px 20px 60px; }
+    .hero-visual { order: -1; flex-direction: column; align-items: center; gap: 12px; }
+    .phone-frame { width: 240px; }
+    .badges-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .float-badge.left, .float-badge.right {
+      position: static !important;
+      display: flex;
+      animation: floatBadge 4s ease-in-out infinite;
+    }
     .hero-stats { gap: 20px; }
     section { padding: 64px 20px; }
     .features-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr; }
     .pricing-grid { grid-template-columns: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
-    .trust-bar { gap: 32px; padding: 28px 20px; }
     .how-wrap { padding: 64px 20px; }
     .testimonials-bg { padding: 64px 20px; }
     .pricing-section { padding: 64px 20px; }
@@ -674,7 +772,7 @@
       </div>
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-num">$0</div>
+          <div class="stat-num">RM0</div>
           <div class="stat-label">To get started</div>
         </div>
         <div class="stat-item">
@@ -689,61 +787,137 @@
     </div>
 
     <div class="hero-visual">
-      <div class="float-badge left">
-        🔥 <span>Day 12 streak!</span>
-      </div>
-
       <div class="phone-frame">
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          <div class="screen-header">
-            <div>
-              <div class="screen-greeting">Good morning 🌿</div>
-              <div class="screen-name">Nesansatya</div>
+          <div class="phone-scroll">
+
+            <!-- Header -->
+            <div class="screen-header">
+              <div>
+                <div class="screen-greeting">Good morning 🌿</div>
+                <div class="screen-name">Nesh</div>
+              </div>
+              <div class="screen-avatar">😊</div>
             </div>
-            <div class="screen-avatar">😊</div>
+
+            <!-- Streak + goal pills -->
+            <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;">
+              <div style="background:var(--green-pale);border:1px solid rgba(74,124,47,0.2);border-radius:100px;padding:4px 12px;font-size:10px;font-weight:600;color:var(--green);display:inline-flex;align-items:center;gap:4px;">🔥 12 day streak</div>
+              <div style="background:white;border:1px solid var(--border);border-radius:100px;padding:4px 12px;font-size:10px;font-weight:500;color:var(--text-muted);">More energy</div>
+            </div>
+
+            <!-- Workout card -->
+            <div class="screen-card">
+              <div class="screen-card-label">Today's workout · Monday</div>
+              <div class="screen-card-title">Upper Body 💪</div>
+              <div class="exercise-list">
+                <div class="exercise-item">
+                  <span>Push-ups · 3×12</span>
+                  <div class="exercise-check">✓</div>
+                </div>
+                <div class="exercise-item">
+                  <span>Pike push-ups · 3×10</span>
+                  <div class="exercise-check" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);"></div>
+                </div>
+                <div class="exercise-item">
+                  <span>Tricep dips · 3×8</span>
+                  <div class="exercise-check" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mood check -->
+            <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:12px;">
+              <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">How are you feeling?</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                <div style="background:var(--green-pale);border:1px solid rgba(74,124,47,0.25);border-radius:10px;padding:8px;text-align:center;font-size:10px;font-weight:600;color:var(--green);">
+                  <div style="font-size:18px;margin-bottom:2px;">😊</div>Good
+                </div>
+                <div style="background:var(--green-pale);border:1px solid rgba(74,124,47,0.25);border-radius:10px;padding:8px;text-align:center;font-size:10px;font-weight:600;color:var(--green);">
+                  <div style="font-size:18px;margin-bottom:2px;">⚡</div>High energy
+                </div>
+                <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:8px;text-align:center;font-size:10px;color:var(--text-muted);">
+                  <div style="font-size:18px;margin-bottom:2px;">😔</div>Low
+                </div>
+                <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:8px;text-align:center;font-size:10px;color:var(--text-muted);">
+                  <div style="font-size:18px;margin-bottom:2px;">😴</div>Tired
+                </div>
+              </div>
+            </div>
+
+            <!-- Water tracker -->
+            <div class="water-bar" style="margin-bottom:12px;">
+              <div class="water-bar-label">
+                <span>💧 Water · 2.3L goal</span>
+                <span style="color:var(--dark);font-weight:600;">5 / 9</span>
+              </div>
+              <div style="display:flex;gap:3px;margin-top:8px;">
+                <div style="flex:1;height:26px;background:var(--green);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--green);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--green);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--green);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--green);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--cream-dark);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--cream-dark);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--cream-dark);border-radius:5px;"></div>
+                <div style="flex:1;height:26px;background:var(--cream-dark);border-radius:5px;"></div>
+              </div>
+            </div>
+
+            <!-- Habits -->
+            <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:12px;">
+              <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Daily habits</div>
+              <div class="habit-grid">
+                <div class="habit-pill done"><div class="habit-dot"></div>Sleep 7h</div>
+                <div class="habit-pill done"><div class="habit-dot"></div>Sunlight</div>
+                <div class="habit-pill"><div class="habit-dot" style="background:var(--text-light)"></div>No sugar</div>
+                <div class="habit-pill"><div class="habit-dot" style="background:var(--text-light)"></div>Walk 20m</div>
+                <div class="habit-pill"><div class="habit-dot" style="background:var(--text-light)"></div>Screen time</div>
+                <div class="habit-pill done"><div class="habit-dot"></div>Protein</div>
+              </div>
+            </div>
+
+            <!-- Meal suggestion -->
+            <div style="background:var(--dark);border-radius:16px;padding:14px;color:var(--cream);">
+              <div style="font-size:10px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Today's meal suggestion</div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:4px;">🥗 Lunch</div>
+              <div style="font-size:11px;opacity:0.7;line-height:1.5;">Brown rice + grilled chicken + stir-fried veg</div>
+              <div style="display:flex;gap:6px;margin-top:10px;">
+                <div style="background:rgba(255,255,255,0.1);border-radius:100px;padding:3px 10px;font-size:10px;">~480 kcal</div>
+                <div style="background:rgba(255,255,255,0.1);border-radius:100px;padding:3px 10px;font-size:10px;">High protein</div>
+              </div>
+            </div>
+
           </div>
 
-          <div class="screen-card">
-            <div class="screen-card-label">Today's workout</div>
-            <div class="screen-card-title">Upper Body — Monday</div>
-            <div class="exercise-list">
-              <div class="exercise-item">
-                Push-ups · 3×12
-                <div class="exercise-check">✓</div>
-              </div>
-              <div class="exercise-item">
-                Pike push-ups · 3×10
-                <div class="exercise-check" style="background:rgba(255,255,255,0.15)"></div>
-              </div>
-              <div class="exercise-item">
-                Dips · 3×8
-                <div class="exercise-check" style="background:rgba(255,255,255,0.15)"></div>
-              </div>
+          <!-- Scroll fade + hint -->
+          <div class="phone-scroll-fade"></div>
+          <div class="phone-scroll-hint">
+            <div class="scroll-chevron"></div>
+            <div class="scroll-chevron c2"></div>
+          </div>
+
+          <!-- Bottom nav bar -->
+          <div class="phone-nav">
+            <div class="phone-nav-item active">
+              <div class="phone-nav-icon">🏠</div>Today
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">📊</div>Summary
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">🥗</div>Meals
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">📈</div>Progress
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">👤</div>Profile
             </div>
           </div>
 
-          <div class="habit-grid">
-            <div class="habit-pill done"><div class="habit-dot"></div> Sleep 7h</div>
-            <div class="habit-pill done"><div class="habit-dot"></div> Sunlight</div>
-            <div class="habit-pill"><div class="habit-dot" style="background:var(--text-light)"></div> No sugar</div>
-            <div class="habit-pill"><div class="habit-dot" style="background:var(--text-light)"></div> Walk 20m</div>
-          </div>
-
-          <div class="water-bar">
-            <div class="water-bar-label">
-              <span>💧 Water intake</span>
-              <span style="color:var(--dark);font-weight:600">5 / 9 glasses</span>
-            </div>
-            <div class="water-bar-track">
-              <div class="water-bar-fill"></div>
-            </div>
-          </div>
         </div>
-      </div>
-
-      <div class="float-badge right">
-        💧 <span>2.3L goal set</span>
       </div>
     </div>
   </div>
@@ -751,25 +925,17 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item">
-    <div class="trust-num">$0/mo</div>
-    <div class="trust-label">Infrastructure cost</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-num">Android</div>
-    <div class="trust-label">Native APK ready</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-num">Bodyweight</div>
-    <div class="trust-label">No gym required</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-num">Malaysian</div>
-    <div class="trust-label">Built for local users</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-num">RM19.90</div>
-    <div class="trust-label">Pro subscription / mo</div>
+  <div class="trust-track">
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">No gym needed</span><span class="trust-label">— Bodyweight only</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">Android</span><span class="trust-label">— Native APK ready</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">5 min setup</span><span class="trust-label">— No credit card needed</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">Malaysian</span><span class="trust-label">— Proudly built for locals</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">RM19.90</span><span class="trust-label">— Pro subscription / mo</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">No gym needed</span><span class="trust-label">— Bodyweight only</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">Android</span><span class="trust-label">— Native APK ready</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">5 min setup</span><span class="trust-label">— No credit card needed</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">Malaysian</span><span class="trust-label">— Proudly built for locals</span></div>
+    <div class="trust-item"><div class="trust-dot"></div><span class="trust-num">RM19.90</span><span class="trust-label">— Pro subscription / mo</span></div>
   </div>
 </div>
 
@@ -887,8 +1053,7 @@
 
     <div class="pricing-grid">
       <div class="pricing-card">
-        <div class="tier-name">Free</div>
-        <div class="price-amount">$0</div>
+        <div class="price-amount">FREE</div>
         <div class="price-label">forever</div>
         <div class="tier-desc">Everything you need to reset your baseline health. No credit card required.</div>
         <div class="feature-lines">
@@ -1109,7 +1274,7 @@
           <li>Withdraw consent for data processing (note: this may affect your ability to use the App)</li>
           <li>Request deletion of your personal data</li>
         </ul>
-        <p>To exercise any of these rights, contact us at <a href="mailto:legal@resetly.my">legal@resetly.my</a>. We will respond within 21 days as required under the PDPA 2010.</p>
+        <p>To exercise any of these rights, contact us at <a href="/cdn-cgi/l/email-protection#a7cbc2c0c6cbe7d5c2d4c2d3cbde89cade"><span class="__cf_email__" data-cfemail="f49891939598b48691879180988dda998d">[email&#160;protected]</span></a>. We will respond within 21 days as required under the PDPA 2010.</p>
       </div>
 
       <div class="legal-section">
@@ -1119,7 +1284,7 @@
 
       <div class="legal-section">
         <h2>9. Children's Privacy</h2>
-        <p>The App is not intended for individuals under 18 years of age. We do not knowingly collect personal data from minors. If you believe a minor has provided us with personal data, contact us immediately at <a href="mailto:legal@resetly.my">legal@resetly.my</a>.</p>
+        <p>The App is not intended for individuals under 18 years of age. We do not knowingly collect personal data from minors. If you believe a minor has provided us with personal data, contact us immediately at <a href="/cdn-cgi/l/email-protection#e8848d8f8984a89a8d9b8d9c8491c68591"><span class="__cf_email__" data-cfemail="2e424b494f426e5c4b5d4b5a4257004357">[email&#160;protected]</span></a>.</p>
       </div>
 
       <div class="legal-section">
@@ -1132,7 +1297,7 @@
         <p>For any privacy-related queries or to exercise your rights under the PDPA 2010, contact:</p>
         <div class="legal-contact-box">
           <strong>Resetly</strong><br>
-          Email: <a href="mailto:legal@resetly.my">legal@resetly.my</a><br>
+          Email: <a href="/cdn-cgi/l/email-protection#69050c0e0805291b0c1a0c1d0510470410"><span class="__cf_email__" data-cfemail="adc1c8caccc1eddfc8dec8d9c1d483c0d4">[email&#160;protected]</span></a><br>
           Website: <a href="https://resetly.my">resetly.my</a>
         </div>
       </div>
@@ -1189,7 +1354,7 @@
           <li>You were charged incorrectly due to a billing error on our part</li>
           <li>You submit a refund request within 7 days of your initial subscription with a valid reason, at our sole discretion</li>
         </ul>
-        <p>To request a refund, contact <a href="mailto:legal@resetly.my">legal@resetly.my</a> with your account email and reason. Refund requests submitted after 7 days of billing will not be entertained. You may cancel your subscription at any time via the billing portal in the App.</p>
+        <p>To request a refund, contact <a href="/cdn-cgi/l/email-protection#29454c4e4845695b4c5a4c5d4550074450"><span class="__cf_email__" data-cfemail="523e3735333e1220372137263e2b7c3f2b">[email&#160;protected]</span></a> with your account email and reason. Refund requests submitted after 7 days of billing will not be entertained. You may cancel your subscription at any time via the billing portal in the App.</p>
       </div>
 
       <div class="legal-section">
@@ -1242,7 +1407,7 @@
         <p>For any queries regarding these Terms of Service, contact:</p>
         <div class="legal-contact-box">
           <strong>Resetly</strong><br>
-          Email: <a href="mailto:legal@resetly.my">legal@resetly.my</a><br>
+          Email: <a href="/cdn-cgi/l/email-protection#503c3537313c1022352335243c297e3d29"><span class="__cf_email__" data-cfemail="1a767f7d7b765a687f697f6e7663347763">[email&#160;protected]</span></a><br>
           Website: <a href="https://resetly.my">resetly.my</a>
         </div>
       </div>
@@ -1336,17 +1501,56 @@
 </style>
 
 <script>
-  function showPage(page) {
-    const main = document.getElementById('main-content');
-    const privacy = document.getElementById('page-privacy');
-    const terms = document.getElementById('page-terms');
-    main.style.display = page === 'home' ? 'block' : 'none';
-    privacy.style.display = page === 'privacy' ? 'block' : 'none';
-    terms.style.display = page === 'terms' ? 'block' : 'none';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+function showPage(page) {
+  var main = document.getElementById('main-content');
+  var privacy = document.getElementById('page-privacy');
+  var terms = document.getElementById('page-terms');
+  main.style.display = page === 'home' ? 'block' : 'none';
+  privacy.style.display = page === 'privacy' ? 'block' : 'none';
+  terms.style.display = page === 'terms' ? 'block' : 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+(function() {
+  var el = document.querySelector('.phone-scroll');
+  if (!el) return;
+  var direction = 1;
+  var auto = true;
+  var pauseTimer = null;
+  var pos = 0;
+  var speed = 0.5;
+
+  function step() {
+    if (auto) {
+      var max = el.scrollHeight - el.clientHeight;
+      pos += speed * direction;
+      if (pos >= max) { pos = max; direction = -1; }
+      if (pos <= 0) { pos = 0; direction = 1; }
+      el.scrollTop = pos;
+    }
+    requestAnimationFrame(step);
   }
+
+  function pauseAuto() {
+    auto = false;
+    clearTimeout(pauseTimer);
+    pauseTimer = setTimeout(function() {
+      pos = el.scrollTop;
+      auto = true;
+    }, 2500);
+  }
+
+  el.addEventListener('wheel', pauseAuto, { passive: true });
+  el.addEventListener('touchstart', pauseAuto, { passive: true });
+  el.addEventListener('mouseenter', function() { auto = false; });
+  el.addEventListener('mouseleave', function() {
+    clearTimeout(pauseTimer);
+    pauseTimer = setTimeout(function() { pos = el.scrollTop; auto = true; }, 800);
+  });
+
+  requestAnimationFrame(step);
+})();
 </script>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classLis
+</body>
+</html>
