@@ -393,7 +393,158 @@
   }
   .trust-label { font-size: 13px; color: rgba(250,248,244,0.5); margin-left: 2px; }
 
-  /* SECTION BASE */
+  /* Animated background shapes */
+  .hero-bg-shapes {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden; pointer-events: none; z-index: 0;
+  }
+  .hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(74,124,47,0.06);
+    animation: shapeDrift 12s ease-in-out infinite;
+  }
+  .hero-shape:nth-child(1) { width: 300px; height: 300px; top: -80px; left: -60px; animation-delay: 0s; }
+  .hero-shape:nth-child(2) { width: 180px; height: 180px; top: 40%; right: 5%; animation-delay: -4s; animation-duration: 15s; }
+  .hero-shape:nth-child(3) { width: 120px; height: 120px; bottom: 10%; left: 30%; animation-delay: -8s; animation-duration: 10s; }
+  @keyframes shapeDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(12px, -18px) scale(1.04); }
+    66% { transform: translate(-10px, 10px) scale(0.97); }
+  }
+
+  /* Social proof avatars */
+  .social-proof {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 28px;
+  }
+  .avatar-stack { display: flex; }
+  .avatar-bubble {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    margin-left: -8px;
+    color: white;
+  }
+  .avatar-bubble:first-child { margin-left: 0; }
+  .avatar-bubble:nth-child(1) { background: #4a7c2f; }
+  .avatar-bubble:nth-child(2) { background: #2a5c1f; }
+  .avatar-bubble:nth-child(3) { background: #6fa84a; }
+  .avatar-bubble:nth-child(4) { background: #1a1a18; }
+  .social-proof-text { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+  .social-proof-text strong { color: var(--dark); font-weight: 600; }
+
+  /* Journey section */
+  .journey-section {
+    background: var(--dark);
+    padding: 100px 40px;
+  }
+  .journey-inner { max-width: 1200px; margin: 0 auto; }
+  .journey-inner .section-label { color: rgba(74,124,47,0.9); }
+  .journey-inner .section-title { color: var(--cream); margin-bottom: 60px; }
+  .journey-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .journey-step {
+    padding: 36px 28px;
+    background: rgba(255,255,255,0.03);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    transition: background 0.2s;
+  }
+  .journey-step:last-child { border-right: none; }
+  .journey-step:hover { background: rgba(255,255,255,0.07); }
+  .journey-week {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--green); margin-bottom: 14px;
+  }
+  .journey-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--cream);
+    line-height: 1.2; margin-bottom: 12px;
+  }
+  .journey-desc {
+    font-size: 14px; line-height: 1.7;
+    color: rgba(250,248,244,0.5);
+  }
+  .journey-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green); margin-bottom: 20px;
+  }
+
+  /* Feature hero card */
+  .feature-hero-card {
+    background: var(--dark);
+    border-radius: 20px 20px 0 0;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+  .feature-hero-left {}
+  .feature-hero-icon {
+    width: 64px; height: 64px;
+    background: rgba(74,124,47,0.3);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin-bottom: 20px;
+  }
+  .feature-hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--cream);
+    line-height: 1.1; margin-bottom: 14px;
+  }
+  .feature-hero-desc {
+    font-size: 16px; line-height: 1.7;
+    color: rgba(250,248,244,0.6);
+  }
+  .feature-hero-right {
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 24px;
+  }
+  .mood-demo-title {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: rgba(250,248,244,0.4); margin-bottom: 14px;
+  }
+  .mood-demo-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;
+  }
+  .mood-demo-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 12px;
+    text-align: center; font-size: 12px; color: rgba(250,248,244,0.6);
+  }
+  .mood-demo-btn.active {
+    background: rgba(74,124,47,0.25);
+    border-color: rgba(74,124,47,0.5);
+    color: #7ac95a; font-weight: 600;
+  }
+  .mood-demo-emoji { font-size: 20px; display: block; margin-bottom: 4px; }
+  .mood-demo-response {
+    background: rgba(74,124,47,0.15);
+    border: 1px solid rgba(74,124,47,0.25);
+    border-radius: 12px; padding: 14px;
+    font-size: 13px; line-height: 1.6;
+    color: rgba(250,248,244,0.8);
+  }
+  .mood-demo-response strong { color: #7ac95a; display: block; margin-bottom: 4px; }
+
+  @media (max-width: 768px) {
+    .feature-hero-card { grid-template-columns: 1fr; padding: 28px; }
+    .journey-timeline { grid-template-columns: 1fr 1fr; }
+    .journey-section { padding: 64px 20px; }
+  }
   section {
     padding: 100px 40px;
     max-width: 1200px;
@@ -760,15 +911,29 @@
 </nav>
 
 <!-- HERO -->
-<div style="max-width:1200px; margin:0 auto;">
-  <div class="hero">
+<div style="max-width:1200px; margin:0 auto; position:relative;">
+  <div class="hero-bg-shapes">
+    <div class="hero-shape"></div>
+    <div class="hero-shape"></div>
+    <div class="hero-shape"></div>
+  </div>
+  <div class="hero" style="position:relative;z-index:1;">
     <div class="hero-left">
       <div class="hero-badge">Now live on Android & Web</div>
-      <h1>Reset your body.<br><em>Slowly</em> and surely.</h1>
-      <p class="hero-sub">A wellness app built for people who aren't motivated yet. No gym required. No trainer needed. Just a structured reset — one week at a time.</p>
+      <h1>Built for the person<br>who keeps <em>quitting.</em></h1>
+      <p class="hero-sub">No gym. No trainer. No excuses. Weekly Reset is the last wellness app you'll try — built for real Malaysians who want to feel better without spending a single ringgit on a gym.</p>
       <div class="hero-actions">
         <a href="https://weekly-reset.vercel.app/signup" class="btn-primary">Start for free →</a>
         <a href="#how-it-works" class="btn-secondary">See how it works ↓</a>
+      </div>
+      <div class="social-proof">
+        <div class="avatar-stack">
+          <div class="avatar-bubble">SR</div>
+          <div class="avatar-bubble">AH</div>
+          <div class="avatar-bubble">FZ</div>
+          <div class="avatar-bubble">+</div>
+        </div>
+        <div class="social-proof-text"><strong>500+ Malaysians</strong> already rebuilding their health</div>
       </div>
       <div class="hero-stats">
         <div class="stat-item">
@@ -945,104 +1110,382 @@
   <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
   <p class="section-sub">Built for people who've tried and quit before. Weekly Reset removes the friction, not the results.</p>
 
-  <div class="features-grid">
-    <div class="feature-card fade-up">
-      <div class="feature-icon">🏋️</div>
-      <div class="feature-title">7-Day Workout Plan</div>
-      <p class="feature-desc">Structured bodyweight workouts for every day of the week. No equipment, no excuses. Just push-ups, dips, squats and runs — calibrated for beginners.</p>
+  <div class="features-grid" style="display:block;background:none;border:none;border-radius:0;margin-top:64px;">
+
+    <!-- Hero feature card - Smart Mood Coaching -->
+    <div class="feature-hero-card">
+      <div class="feature-hero-left">
+        <div class="feature-hero-icon">🧠</div>
+        <div class="feature-hero-title">Smart Mood<br>Coaching</div>
+        <p class="feature-hero-desc">Tell the app how you feel, and it responds like a coach who actually knows you. Drained and low? It won't push you to sprint. It'll suggest one 10-minute walk and highlight the three habits that move the needle most — right now, for how you feel today.</p>
+      </div>
+      <div class="feature-hero-right">
+        <div class="mood-demo-title">How are you feeling today?</div>
+        <div class="mood-demo-grid">
+          <div class="mood-demo-btn active"><span class="mood-demo-emoji">😔</span>Low</div>
+          <div class="mood-demo-btn active"><span class="mood-demo-emoji">😴</span>Drained</div>
+          <div class="mood-demo-btn"><span class="mood-demo-emoji">😊</span>Good</div>
+          <div class="mood-demo-btn"><span class="mood-demo-emoji">⚡</span>Energised</div>
+        </div>
+        <div class="mood-demo-response">
+          <strong>🌿 Rough day — and that's completely okay.</strong>
+          Skip the hard stuff today. One 10-min walk outside will shift your energy more than anything else right now. That's your only job.
+        </div>
+      </div>
     </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon">🧠</div>
-      <div class="feature-title">Smart Mood Coaching</div>
-      <p class="feature-desc">Tell the app how you feel, and it responds like a coach. Drained? It won't push you to sprint. It'll suggest one 10-minute walk. That's all.</p>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon">💧</div>
-      <div class="feature-title">Personalised Water Goal</div>
-      <p class="feature-desc">Your hydration goal is calculated from your body weight — not a generic 8 glasses. Enter your weight once, and your daily target is set forever.</p>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon">✅</div>
-      <div class="feature-title">Daily Habit Tracking</div>
-      <p class="feature-desc">The six habits that matter most for baseline health — sleep, sunlight, no sugar, walking, water, screen time. One tap to check each off.</p>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon">🥗</div>
-      <div class="feature-title">Meal Guide</div>
-      <p class="feature-desc">Breakfast, lunch, and dinner suggestions built on real nutritional principles. Macro tags, calorie estimates, and options that work in Malaysian kitchens.</p>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon">📈</div>
-      <div class="feature-title">Progress Tracking</div>
-      <p class="feature-desc">Weekly summaries, all-time stats, mood trends over 30 or 90 days. See your patterns. Understand what actually works for your body.</p>
+
+    <!-- 2-column grid for remaining features -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:0 0 24px 24px;overflow:hidden;">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🏋️</div>
+        <div class="feature-title">7-Day Workout Plan</div>
+        <p class="feature-desc">Structured bodyweight workouts for every day of the week. No equipment, no excuses. Just push-ups, dips, squats and runs — calibrated for beginners.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">💧</div>
+        <div class="feature-title">Personalised Water Goal</div>
+        <p class="feature-desc">Your hydration goal is calculated from your body weight — not a generic 8 glasses. Enter your weight once, and your daily target is set forever.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">Daily Habit Tracking</div>
+        <p class="feature-desc">The six habits that matter most for baseline health — sleep, sunlight, no sugar, walking, water, screen time. One tap to check each off.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🥗</div>
+        <div class="feature-title">Meal Guide</div>
+        <p class="feature-desc">Breakfast, lunch, and dinner suggestions built on real nutritional principles. Macro tags, calorie estimates, and options that work in Malaysian kitchens.</p>
+      </div>
+      <div class="feature-card fade-up" style="border-radius:0 0 0 24px;">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Progress Tracking</div>
+        <p class="feature-desc">Weekly summaries, all-time stats, mood trends over 30 or 90 days. See your patterns. Understand what actually works for your body.</p>
+      </div>
+      <div class="feature-card fade-up" style="border-radius:0 0 24px 0;">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">Streak System</div>
+        <p class="feature-desc">Daily streaks that keep you accountable without making you feel guilty. Miss a day? Your streak resets — but your progress never disappears.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<div class="how-wrap" id="how-it-works">
-  <div class="section-label">How it works</div>
-  <h2 class="section-title">Open it. Do the thing.<br>Close it. Feel better.</h2>
-
-  <div class="how-grid">
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-title">Sign up in 30 seconds</div>
-          <p class="step-desc">Email, password, and one question: what's your goal? More energy, better sleep, lose weight, or build habits. That's it — no onboarding maze.</p>
-        </div>
+<!-- JOURNEY SECTION -->
+<div class="journey-section">
+  <div class="journey-inner">
+    <div class="section-label">The transformation</div>
+    <h2 class="section-title">What changes when you<br>actually show up.</h2>
+    <div class="journey-timeline">
+      <div class="journey-step">
+        <div class="journey-dot"></div>
+        <div class="journey-week">Week 1</div>
+        <div class="journey-heading">You show up.</div>
+        <p class="journey-desc">You open the app. You log your mood. You do 3 push-ups instead of zero. That's it. That's the whole win for week one.</p>
       </div>
-      <div class="how-step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <div class="step-title">Check your Today dashboard</div>
-          <p class="step-desc">Every morning, your dashboard shows the workout, your habits, water goal, and a mood check-in. Everything is in one place.</p>
-        </div>
+      <div class="journey-step">
+        <div class="journey-dot"></div>
+        <div class="journey-week">Week 2</div>
+        <div class="journey-heading">You notice things.</div>
+        <p class="journey-desc">Sleep affects your energy. Sunlight in the morning shifts your mood. You start connecting the dots between what you do and how you feel.</p>
       </div>
-      <div class="how-step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-title">Log how you feel</div>
-          <p class="step-desc">Tap your mood and energy level. The app adapts its recommendations instantly — pushing harder when you're energised, pulling back when you're not.</p>
-        </div>
+      <div class="journey-step">
+        <div class="journey-dot"></div>
+        <div class="journey-week">Week 3</div>
+        <div class="journey-heading">It gets easier.</div>
+        <p class="journey-desc">You don't need to remind yourself anymore. The habit check-off becomes a ritual. Your streak hits double digits. You start to believe it.</p>
       </div>
-      <div class="how-step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <div class="step-title">Watch the patterns emerge</div>
-          <p class="step-desc">After a week, your summary shows what you completed. After a month, you'll see which habits moved the needle. The data is yours, and it tells a story.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="how-visual">
-      <div class="mood-check-title">How are you feeling today?</div>
-      <div class="mood-grid">
-        <div class="mood-btn">
-          <span class="emoji">😄</span>
-          Great
-        </div>
-        <div class="mood-btn active">
-          <span class="emoji">😔</span>
-          Low
-        </div>
-        <div class="mood-btn">
-          <span class="emoji">⚡</span>
-          Energised
-        </div>
-        <div class="mood-btn active">
-          <span class="emoji">😴</span>
-          Drained
-        </div>
-      </div>
-      <div class="recommendation-box">
-        <div class="rec-header">🌿 Rough day — and that's okay.</div>
-        Skip the hard stuff today. One 10-minute walk outside will shift your energy more than anything else right now. That's your one job.
+      <div class="journey-step">
+        <div class="journey-dot"></div>
+        <div class="journey-week">Week 4+</div>
+        <div class="journey-heading">You don't quit.</div>
+        <p class="journey-desc">This is the part that's different. You've been here before — but this time, the app met you where you were. And you stayed.</p>
       </div>
     </div>
   </div>
 </div>
+
+<!-- HOW IT WORKS -->
+<div class="how-wrap" id="how-it-works">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Try it right here.<br>No download needed.</h2>
+  <p class="section-sub" style="margin-bottom:48px;">Click through the steps below and see exactly what happens when you open Weekly Reset for the first time.</p>
+
+  <div class="demo-wrap">
+
+    <!-- Step nav -->
+    <div class="demo-steps">
+      <div class="demo-step active" onclick="setStep(0)">
+        <div class="demo-step-num">1</div>
+        <div class="demo-step-content">
+          <div class="demo-step-title">Pick your goal</div>
+          <p class="demo-step-desc">Sign up in 30 seconds. One question — that's it.</p>
+        </div>
+      </div>
+      <div class="demo-step" onclick="setStep(1)">
+        <div class="demo-step-num">2</div>
+        <div class="demo-step-content">
+          <div class="demo-step-title">See your dashboard</div>
+          <p class="demo-step-desc">Your workout, habits, water goal — all in one place.</p>
+        </div>
+      </div>
+      <div class="demo-step" onclick="setStep(2)">
+        <div class="demo-step-num">3</div>
+        <div class="demo-step-content">
+          <div class="demo-step-title">Log how you feel</div>
+          <p class="demo-step-desc">The app adapts to your mood and energy instantly.</p>
+        </div>
+      </div>
+      <div class="demo-step" onclick="setStep(3)">
+        <div class="demo-step-num">4</div>
+        <div class="demo-step-content">
+          <div class="demo-step-title">Track your progress</div>
+          <p class="demo-step-desc">Your weekly summary shows exactly how far you've come.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone demo -->
+    <div class="demo-phone-wrap">
+      <div class="demo-phone">
+        <div class="phone-notch"></div>
+        <div class="demo-screen" id="demo-screen">
+
+          <!-- STEP 1: Goal selection -->
+          <div class="demo-slide active" id="slide-0">
+            <div style="text-align:center;margin-bottom:24px;">
+              <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Welcome to Weekly Reset</div>
+              <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--dark);line-height:1.2;">What's your goal?</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="goal-btn active">⚡ More energy</div>
+              <div class="goal-btn">😴 Better sleep</div>
+              <div class="goal-btn">🏃 Lose weight</div>
+              <div class="goal-btn">✅ Build habits</div>
+            </div>
+            <button class="demo-next-btn" onclick="setStep(1)">Continue →</button>
+          </div>
+
+          <!-- STEP 2: Dashboard -->
+          <div class="demo-slide" id="slide-1">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div>
+                <div style="font-size:10px;color:var(--text-muted);">Good morning 🌿</div>
+                <div style="font-size:15px;font-weight:600;color:var(--dark);">Nesh</div>
+              </div>
+              <div style="background:var(--green-pale);border-radius:100px;padding:4px 10px;font-size:10px;color:var(--green);font-weight:600;">🔥 Day 1</div>
+            </div>
+            <div style="background:var(--dark);border-radius:14px;padding:14px;margin-bottom:10px;color:var(--cream);">
+              <div style="font-size:9px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Today's workout</div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:8px;">Upper Body 💪</div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:6px 10px;font-size:11px;display:flex;justify-content:space-between;"><span>Push-ups · 3×12</span><span style="color:var(--green);">✓</span></div>
+                <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:6px 10px;font-size:11px;display:flex;justify-content:space-between;"><span>Pike push-ups · 3×10</span><span style="opacity:0.3;">○</span></div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+              <div style="background:var(--green-pale);border-radius:10px;padding:8px 10px;font-size:10px;font-weight:500;color:var(--green);">✓ Sleep 7h</div>
+              <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:10px;color:var(--text-muted);">○ Sunlight</div>
+              <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:10px;color:var(--text-muted);">○ No sugar</div>
+              <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:10px;color:var(--text-muted);">○ Walk 20m</div>
+            </div>
+            <button class="demo-next-btn" onclick="setStep(2)">Next →</button>
+          </div>
+
+          <!-- STEP 3: Mood logging -->
+          <div class="demo-slide" id="slide-2">
+            <div style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:4px;">How are you feeling?</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">Your app will adapt to your answer.</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+              <div class="mood-tap-btn" id="mood-low" onclick="selectMood('low')"><span style="font-size:20px;display:block;margin-bottom:4px;">😔</span>Low</div>
+              <div class="mood-tap-btn" id="mood-good" onclick="selectMood('good')"><span style="font-size:20px;display:block;margin-bottom:4px;">😊</span>Good</div>
+              <div class="mood-tap-btn active" id="mood-drained" onclick="selectMood('drained')"><span style="font-size:20px;display:block;margin-bottom:4px;">😴</span>Drained</div>
+              <div class="mood-tap-btn" id="mood-energy" onclick="selectMood('energy')"><span style="font-size:20px;display:block;margin-bottom:4px;">⚡</span>High energy</div>
+            </div>
+            <div id="mood-response" style="background:rgba(74,124,47,0.1);border:1px solid rgba(74,124,47,0.25);border-radius:12px;padding:12px;font-size:11px;line-height:1.6;color:var(--text);">
+              <div style="font-weight:600;color:var(--green);margin-bottom:4px;">🌿 Rough day — that's okay.</div>
+              Skip the hard stuff. One 10-min walk is your only job today.
+            </div>
+            <button class="demo-next-btn" onclick="setStep(3)" style="margin-top:12px;">Next →</button>
+          </div>
+
+          <!-- STEP 4: Weekly summary -->
+          <div class="demo-slide" id="slide-3">
+            <div style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:14px;">Your week in review 📊</div>
+            <div style="background:var(--dark);border-radius:14px;padding:14px;margin-bottom:10px;color:var(--cream);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+                <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:var(--green);">5</div><div style="font-size:9px;opacity:0.5;">Days active</div></div>
+                <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:var(--green);">68%</div><div style="font-size:9px;opacity:0.5;">Habits done</div></div>
+                <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:var(--green);">🔥7</div><div style="font-size:9px;opacity:0.5;">Day streak</div></div>
+              </div>
+              <div style="font-size:10px;opacity:0.5;margin-bottom:6px;">Mood this week</div>
+              <div style="display:flex;gap:4px;align-items:flex-end;height:36px;">
+                <div style="flex:1;background:var(--green);border-radius:3px;height:60%;opacity:0.7;"></div>
+                <div style="flex:1;background:var(--green);border-radius:3px;height:40%;opacity:0.7;"></div>
+                <div style="flex:1;background:var(--green);border-radius:3px;height:80%;opacity:0.7;"></div>
+                <div style="flex:1;background:var(--green);border-radius:3px;height:55%;opacity:0.7;"></div>
+                <div style="flex:1;background:var(--green);border-radius:3px;height:90%;opacity:0.7;"></div>
+                <div style="flex:1;background:rgba(255,255,255,0.2);border-radius:3px;height:30%;"></div>
+                <div style="flex:1;background:rgba(255,255,255,0.2);border-radius:3px;height:30%;"></div>
+              </div>
+            </div>
+            <div style="background:var(--green-pale);border:1px solid rgba(74,124,47,0.2);border-radius:12px;padding:12px;font-size:11px;line-height:1.6;color:var(--green);">
+              <strong>Keep going.</strong> You showed up 5 out of 7 days. That's better than most people manage in a month.
+            </div>
+            <a href="https://weekly-reset.vercel.app/signup" style="display:block;background:var(--dark);color:var(--cream);border-radius:100px;padding:12px;text-align:center;font-size:13px;font-weight:500;text-decoration:none;margin-top:12px;">Start your reset →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Step dots -->
+      <div class="demo-dots">
+        <div class="demo-dot active" onclick="setStep(0)"></div>
+        <div class="demo-dot" onclick="setStep(1)"></div>
+        <div class="demo-dot" onclick="setStep(2)"></div>
+        <div class="demo-dot" onclick="setStep(3)"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .demo-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 0;
+  }
+  .demo-steps { display: flex; flex-direction: column; gap: 0; }
+  .demo-step {
+    display: flex; gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0.4;
+  }
+  .demo-step:last-child { border-bottom: none; }
+  .demo-step.active { opacity: 1; }
+  .demo-step.active .demo-step-num { background: var(--green); color: white; }
+  .demo-step:hover { opacity: 0.8; }
+  .demo-step-num {
+    width: 40px; height: 40px; min-width: 40px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .demo-step-title { font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+  .demo-step-desc { font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+
+  .demo-phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .demo-phone {
+    width: 280px;
+    background: var(--dark);
+    border-radius: 44px;
+    padding: 12px 12px 20px;
+    box-shadow: 0 40px 80px rgba(26,26,24,0.2), 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .demo-screen {
+    background: #faf8f4;
+    border-radius: 34px;
+    padding: 20px 16px;
+    min-height: 440px;
+    position: relative;
+    overflow: hidden;
+  }
+  .demo-slide {
+    display: none;
+    animation: slideIn 0.35s ease;
+  }
+  .demo-slide.active { display: block; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .goal-btn {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 13px; font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .goal-btn.active {
+    background: var(--green-pale);
+    border-color: rgba(74,124,47,0.3);
+    color: var(--green);
+  }
+  .goal-btn:hover { border-color: rgba(74,124,47,0.3); }
+  .demo-next-btn {
+    width: 100%; margin-top: 16px;
+    background: var(--dark); color: var(--cream);
+    border: none; border-radius: 100px;
+    padding: 12px; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .demo-next-btn:hover { background: var(--green); }
+  .mood-tap-btn {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    font-size: 11px; font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mood-tap-btn.active {
+    background: var(--green-pale);
+    border-color: rgba(74,124,47,0.3);
+    color: var(--green);
+  }
+  .demo-dots { display: flex; gap: 8px; }
+  .demo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cream-dark);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .demo-dot.active { background: var(--green); width: 24px; border-radius: 100px; }
+
+  @media (max-width: 768px) {
+    .demo-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .demo-phone-wrap { order: -1; }
+  }
+</style>
+
+<script>
+function setStep(n) {
+  document.querySelectorAll('.demo-step').forEach(function(el, i) {
+    el.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.demo-slide').forEach(function(el, i) {
+    el.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.demo-dot').forEach(function(el, i) {
+    el.classList.toggle('active', i === n);
+  });
+}
+
+function selectMood(mood) {
+  document.querySelectorAll('.mood-tap-btn').forEach(function(el) { el.classList.remove('active'); });
+  document.getElementById('mood-' + mood).classList.add('active');
+  var responses = {
+    low: '<div style="font-weight:600;color:var(--green);margin-bottom:4px;">🌿 Rough day — that\'s okay.</div>Skip the hard stuff. One 10-min walk is your only job today.',
+    good: '<div style="font-weight:600;color:var(--green);margin-bottom:4px;">😊 Good energy today!</div>You\'re in a great state. Knock out your workout and tick off all 6 habits.',
+    drained: '<div style="font-weight:600;color:var(--green);margin-bottom:4px;">😴 Low energy detected.</div>Rest is productive too. Light stretching and drink your water — that\'s it.',
+    energy: '<div style="font-weight:600;color:var(--green);margin-bottom:4px;">⚡ High energy — let\'s go!</div>Push harder today. Add an extra set to your workout and go for that walk.'
+  };
+  document.getElementById('mood-response').innerHTML = responses[mood];
+}
+</script>
 
 <!-- PRICING -->
 <div class="pricing-section" id="pricing">
@@ -1140,11 +1583,11 @@
 <div style="background:var(--cream);">
   <div class="cta-section">
     <div class="section-label">Ready?</div>
-    <h2 class="section-title">Your reset starts today.</h2>
-    <p class="section-sub">No gym. No trainer. No excuses. Just you, the app, and one better week than the last.</p>
+    <h2 class="section-title">Try it free. No gym.<br>No credit card. No reason not to.</h2>
+    <p class="section-sub">You've tried apps before. This one is different — because it was built for the version of you that keeps quitting. Start free. Stay because it works.</p>
     <div class="cta-actions">
       <a href="https://weekly-reset.vercel.app/signup" class="btn-primary">Start for free →</a>
-      <a href="https://resetly.my" class="btn-secondary">Learn more at resetly.my</a>
+      <a href="#features" class="btn-secondary">See what's included ↓</a>
     </div>
   </div>
 </div>
@@ -1171,8 +1614,8 @@
           <h4>Company</h4>
           <ul>
             <li><a href="https://resetly.my">resetly.my</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
+            <li><a href="https://www.instagram.com/resetlyapp/">Instagram</a></li>
+            <li><a href="https://www.facebook.com/resetlyapp/">Facebook</a></li>
             <li><a href="/cdn-cgi/l/email-protection#ff979a939390bf8d9a8c9a8b9386d19286">Contact</a></li>
           </ul>
         </div>
@@ -1188,8 +1631,8 @@
     <div class="footer-bottom">
       <span>© 2026 Resetly. Built in Malaysia 🇲🇾</span>
       <div class="footer-social">
-        <a href="#" class="social-link">f</a>
-        <a href="#" class="social-link">ig</a>
+        <a href="https://www.facebook.com/resetlyapp/" class="social-link">f</a>
+        <a href="https://www.instagram.com/resetlyapp/" class="social-link">ig</a>
       </div>
     </div>
   </div>
