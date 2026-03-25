@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Reset — Reset Your Body. Slowly and Surely.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #faf8f4;
+    --cream-dark: #f0ede5;
+    --dark: #1a1a18;
+    --dark-2: #2a2a27;
+    --green: #4a7c2f;
+    --green-light: #6fa84a;
+    --green-pale: #eaf3de;
+    --text: #2c2c2a;
+    --text-muted: #6b6b68;
+    --text-light: #9a9a96;
+    --border: rgba(44,44,42,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,248,244,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--green); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500;
+    color: var(--text-muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta {
+    background: var(--dark);
+    color: var(--cream) !important;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--green) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-pale);
+    border: 1px solid rgba(74,124,47,0.2);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px; font-weight: 500;
+    color: var(--green);
+    margin-bottom: 28px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.08;
+    color: var(--dark);
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 420px;
+  }
+
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-size: 16px; font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--green); transform: translateY(-2px); }
+
+  .btn-secondary {
+    color: var(--text-muted);
+    font-size: 15px; font-weight: 500;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--dark); }
+
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--dark);
+    line-height: 1;
+  }
+  .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  /* PHONE MOCKUP */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .phone-frame {
+    width: 280px;
+    background: var(--dark);
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow: 0 40px 80px rgba(26,26,24,0.25), 0 0 0 1px rgba(255,255,255,0.08);
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-16px); }
+  }
+
+  .phone-notch {
+    width: 80px; height: 24px;
+    background: var(--dark);
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto 8px;
+    position: relative; z-index: 2;
+  }
+
+  .phone-screen {
+    background: #faf8f4;
+    border-radius: 34px;
+    overflow: hidden;
+    padding: 20px 16px;
+    min-height: 520px;
+  }
+
+  .screen-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .screen-greeting { font-size: 11px; color: var(--text-muted); }
+  .screen-name { font-size: 16px; font-weight: 600; color: var(--dark); }
+  .screen-avatar {
+    width: 32px; height: 32px;
+    background: var(--green-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .screen-card {
+    background: var(--dark);
+    border-radius: 20px;
+    padding: 16px;
+    margin-bottom: 12px;
+    color: var(--cream);
+  }
+  .screen-card-label { font-size: 10px; opacity: 0.6; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .screen-card-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+
+  .exercise-list { display: flex; flex-direction: column; gap: 6px; }
+  .exercise-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .exercise-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+  }
+
+  .habit-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 12px;
+  }
+  .habit-pill {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .habit-pill.done { background: var(--green-pale); border-color: rgba(74,124,47,0.2); color: var(--green); }
+  .habit-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+  .water-bar {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+  .water-bar-label { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .water-bar-track { background: var(--cream-dark); border-radius: 100px; height: 8px; overflow: hidden; }
+  .water-bar-fill { background: #4a9fd4; height: 100%; border-radius: 100px; width: 60%; transition: width 1s ease; }
+
+  /* FLOATING ELEMENTS */
+  .float-badge {
+    position: absolute;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 24px rgba(26,26,24,0.1);
+    font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+    animation: floatBadge 4s ease-in-out infinite;
+  }
+  .float-badge.left {
+    left: -60px; top: 30%;
+    animation-delay: -2s;
+  }
+  .float-badge.right {
+    right: -50px; bottom: 30%;
+  }
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--dark);
+    padding: 28px 40px;
+    display: flex; justify-content: center; align-items: center;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    text-align: center;
+  }
+  .trust-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: var(--cream);
+    line-height: 1;
+  }
+  .trust-label { font-size: 12px; color: rgba(250,248,244,0.5); margin-top: 4px; }
+
+  /* SECTION BASE */
+  section {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+  .section-sub {
+    font-size: 18px; line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 540px;
+  }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .feature-card {
+    background: var(--cream);
+    padding: 40px 36px;
+    transition: background 0.2s;
+  }
+  .feature-card:hover { background: white; }
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: var(--dark);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .feature-title {
+    font-size: 18px; font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .feature-desc {
+    font-size: 15px; line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  /* HOW IT WORKS */
+  .how-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 64px;
+  }
+  .how-steps { display: flex; flex-direction: column; gap: 0; }
+  .how-step {
+    display: flex; gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .how-step:last-child { border-bottom: none; }
+  .how-step:hover .step-num { background: var(--green); color: white; }
+  .step-num {
+    width: 40px; height: 40px; min-width: 40px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .step-content {}
+  .step-title { font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .step-desc { font-size: 15px; line-height: 1.6; color: var(--text-muted); }
+
+  .how-visual {
+    background: var(--dark);
+    border-radius: 28px;
+    padding: 40px 32px;
+    color: var(--cream);
+  }
+  .mood-check-title { font-size: 14px; opacity: 0.6; margin-bottom: 20px; }
+  .mood-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .mood-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mood-btn.active { background: rgba(74,124,47,0.3); border-color: var(--green); }
+  .mood-btn .emoji { font-size: 22px; display: block; margin-bottom: 6px; }
+  .recommendation-box {
+    background: rgba(74,124,47,0.2);
+    border: 1px solid rgba(74,124,47,0.3);
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(250,248,244,0.9);
+  }
+  .rec-header { font-weight: 600; margin-bottom: 6px; color: #7ac95a; }
+
+  /* PRICING */
+  .pricing-section {
+    background: var(--dark);
+    padding: 100px 40px;
+  }
+  .pricing-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .pricing-inner .section-title { color: var(--cream); }
+  .pricing-inner .section-sub { color: rgba(250,248,244,0.6); margin: 0 auto 60px; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+  }
+  .pricing-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 36px;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+  .pricing-card.featured {
+    background: var(--cream);
+    border-color: var(--cream);
+  }
+  .pricing-card.featured .price-amount { color: var(--dark); }
+  .pricing-card.featured .price-label { color: var(--text-muted); }
+  .pricing-card.featured .tier-name { color: var(--dark); }
+  .pricing-card.featured .tier-desc { color: var(--text-muted); }
+  .pricing-card.featured .feature-line { color: var(--text); border-color: var(--border); }
+  .pricing-card.featured .price-cta { background: var(--dark); color: var(--cream); }
+  .pricing-card.featured .price-cta:hover { background: var(--green); }
+
+  .featured-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--green);
+    color: white;
+    font-size: 12px; font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .tier-name { font-size: 14px; font-weight: 600; color: rgba(250,248,244,0.7); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+  .price-amount { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--cream); line-height: 1; }
+  .price-label { font-size: 14px; color: rgba(250,248,244,0.4); margin-bottom: 28px; }
+  .tier-desc { font-size: 14px; color: rgba(250,248,244,0.5); margin-bottom: 24px; }
+
+  .feature-lines { display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; }
+  .feature-line {
+    font-size: 14px; color: rgba(250,248,244,0.8);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .feature-line::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 13px; }
+
+  .price-cta {
+    display: block;
+    background: rgba(255,255,255,0.1);
+    color: var(--cream);
+    border: none;
+    border-radius: 100px;
+    padding: 14px 28px;
+    font-size: 15px; font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+  }
+  .price-cta:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+
+  .pricing-note {
+    font-size: 14px;
+    color: rgba(250,248,244,0.4);
+    margin-top: 32px;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-bg {
+    background: var(--cream-dark);
+    padding: 100px 40px;
+  }
+  .testimonials-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+  .testimonial-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,26,24,0.08); }
+  .testimonial-stars { color: #f59e0b; font-size: 14px; margin-bottom: 14px; }
+  .testimonial-text { font-size: 15px; line-height: 1.7; color: var(--text); margin-bottom: 20px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; color: var(--green);
+  }
+  .author-name { font-size: 14px; font-weight: 600; color: var(--dark); }
+  .author-role { font-size: 12px; color: var(--text-muted); }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 120px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-section .section-title { margin-bottom: 20px; }
+  .cta-section .section-sub { margin: 0 auto 48px; }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 60px 40px 40px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 40px;
+    flex-wrap: wrap; gap: 40px;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px; color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .footer-logo span { color: var(--green); }
+  .footer-tagline { font-size: 14px; color: rgba(250,248,244,0.4); }
+  .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+  .footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: rgba(250,248,244,0.4); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col li a { font-size: 14px; color: rgba(250,248,244,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-col li a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(250,248,244,0.3);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-social { display: flex; gap: 16px; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(250,248,244,0.5);
+    text-decoration: none; font-size: 14px;
+    transition: all 0.2s;
+  }
+  .social-link:hover { border-color: rgba(255,255,255,0.3); color: var(--cream); }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 48px; padding: 120px 20px 60px; }
+    .hero-visual { order: -1; }
+    .phone-frame { width: 220px; }
+    .float-badge.left, .float-badge.right { display: none; }
+    .hero-stats { gap: 20px; }
+    section { padding: 64px 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .trust-bar { gap: 32px; padding: 28px 20px; }
+    .how-wrap { padding: 64px 20px; }
+    .testimonials-bg { padding: 64px 20px; }
+    .pricing-section { padding: 64px 20px; }
+    .cta-section { padding: 80px 20px; }
+    footer { padding: 48px 20px 32px; }
+    .footer-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Weekly <span>Reset</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://weekly-reset.vercel.app" class="nav-cta">Start free →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1200px; margin:0 auto;">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">Now live on Android & Web</div>
+      <h1>Reset your body.<br><em>Slowly</em> and surely.</h1>
+      <p class="hero-sub">A wellness app built for people who aren't motivated yet. No gym required. No trainer needed. Just a structured reset — one week at a time.</p>
+      <div class="hero-actions">
+        <a href="https://weekly-reset.vercel.app/signup" class="btn-primary">Start for free →</a>
+        <a href="#how-it-works" class="btn-secondary">See how it works ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">$0</div>
+          <div class="stat-label">To get started</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Day structure</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Core habits tracked</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="float-badge left">
+        🔥 <span>Day 12 streak!</span>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="screen-header">
+            <div>
+              <div class="screen-greeting">Good morning 🌿</div>
+              <div class="screen-name">Nesansatya</div>
+            </div>
+            <div class="screen-avatar">😊</div>
+          </div>
+
+          <div class="screen-card">
+            <div class="screen-card-label">Today's workout</div>
+            <div class="screen-card-title">Upper Body — Monday</div>
+            <div class="exercise-list">
+              <div class="exercise-item">
+                Push-ups · 3×12
+                <div class="exercise-check">✓</div>
+              </div>
+              <div class="exercise-item">
+                Pike push-ups · 3×10
+                <div class="exercise-check" style="background:rgba(255,255,255,0.15)"></div>
+              </div>
+              <div class="exercise-item">
+                Dips · 3×8
+                <div class="exercise-check" style="background:rgba(255,255,255,0.15)"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="habit-grid">
+            <div class="habit-pill done"><div class="habit-dot"></div> Sleep 7h</div>
+            <div class="habit-pill done"><div class="habit-dot"></div> Sunlight</div>
+            <div class="habit-pill"><div class="habit-dot" style="background:var(--text-light)"></div> No sugar</div>
+            <div class="habit-pill"><div class="habit-dot" style="background:var(--text-light)"></div> Walk 20m</div>
+          </div>
+
+          <div class="water-bar">
+            <div class="water-bar-label">
+              <span>💧 Water intake</span>
+              <span style="color:var(--dark);font-weight:600">5 / 9 glasses</span>
+            </div>
+            <div class="water-bar-track">
+              <div class="water-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-badge right">
+        💧 <span>2.3L goal set</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-num">$0/mo</div>
+    <div class="trust-label">Infrastructure cost</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">Android</div>
+    <div class="trust-label">Native APK ready</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">Bodyweight</div>
+    <div class="trust-label">No gym required</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">Malaysian</div>
+    <div class="trust-label">Built for local users</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">RM19.90</div>
+    <div class="trust-label">Pro subscription / mo</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">What you get</div>
+  <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
+  <p class="section-sub">Built for people who've tried and quit before. Weekly Reset removes the friction, not the results.</p>
+
+  <div class="features-grid">
+    <div class="feature-card fade-up">
+      <div class="feature-icon">🏋️</div>
+      <div class="feature-title">7-Day Workout Plan</div>
+      <p class="feature-desc">Structured bodyweight workouts for every day of the week. No equipment, no excuses. Just push-ups, dips, squats and runs — calibrated for beginners.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-title">Smart Mood Coaching</div>
+      <p class="feature-desc">Tell the app how you feel, and it responds like a coach. Drained? It won't push you to sprint. It'll suggest one 10-minute walk. That's all.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">💧</div>
+      <div class="feature-title">Personalised Water Goal</div>
+      <p class="feature-desc">Your hydration goal is calculated from your body weight — not a generic 8 glasses. Enter your weight once, and your daily target is set forever.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">✅</div>
+      <div class="feature-title">Daily Habit Tracking</div>
+      <p class="feature-desc">The six habits that matter most for baseline health — sleep, sunlight, no sugar, walking, water, screen time. One tap to check each off.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">🥗</div>
+      <div class="feature-title">Meal Guide</div>
+      <p class="feature-desc">Breakfast, lunch, and dinner suggestions built on real nutritional principles. Macro tags, calorie estimates, and options that work in Malaysian kitchens.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">📈</div>
+      <div class="feature-title">Progress Tracking</div>
+      <p class="feature-desc">Weekly summaries, all-time stats, mood trends over 30 or 90 days. See your patterns. Understand what actually works for your body.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="how-wrap" id="how-it-works">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Open it. Do the thing.<br>Close it. Feel better.</h2>
+
+  <div class="how-grid">
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Sign up in 30 seconds</div>
+          <p class="step-desc">Email, password, and one question: what's your goal? More energy, better sleep, lose weight, or build habits. That's it — no onboarding maze.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Check your Today dashboard</div>
+          <p class="step-desc">Every morning, your dashboard shows the workout, your habits, water goal, and a mood check-in. Everything is in one place.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Log how you feel</div>
+          <p class="step-desc">Tap your mood and energy level. The app adapts its recommendations instantly — pushing harder when you're energised, pulling back when you're not.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Watch the patterns emerge</div>
+          <p class="step-desc">After a week, your summary shows what you completed. After a month, you'll see which habits moved the needle. The data is yours, and it tells a story.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-visual">
+      <div class="mood-check-title">How are you feeling today?</div>
+      <div class="mood-grid">
+        <div class="mood-btn">
+          <span class="emoji">😄</span>
+          Great
+        </div>
+        <div class="mood-btn active">
+          <span class="emoji">😔</span>
+          Low
+        </div>
+        <div class="mood-btn">
+          <span class="emoji">⚡</span>
+          Energised
+        </div>
+        <div class="mood-btn active">
+          <span class="emoji">😴</span>
+          Drained
+        </div>
+      </div>
+      <div class="recommendation-box">
+        <div class="rec-header">🌿 Rough day — and that's okay.</div>
+        Skip the hard stuff today. One 10-minute walk outside will shift your energy more than anything else right now. That's your one job.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-label" style="color:rgba(74,124,47,0.9)">Simple pricing</div>
+    <h2 class="section-title">Start free. Upgrade when ready.</h2>
+    <p class="section-sub">The free version is genuinely useful — not a crippled demo. Pro is for people who want to go deeper.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="tier-name">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-label">forever</div>
+        <div class="tier-desc">Everything you need to reset your baseline health. No credit card required.</div>
+        <div class="feature-lines">
+          <div class="feature-line">Full 7-day workout plan</div>
+          <div class="feature-line">Daily habit tracking</div>
+          <div class="feature-line">Mood & energy logging</div>
+          <div class="feature-line">Smart mood recommendations</div>
+          <div class="feature-line">Personalised water goal</div>
+          <div class="feature-line">Meal guide</div>
+          <div class="feature-line">Weekly summary</div>
+          <div class="feature-line">Progress screen</div>
+        </div>
+        <a href="https://weekly-reset.vercel.app/signup" class="price-cta">Get started free</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most popular</div>
+        <div class="tier-name">Pro</div>
+        <div class="price-amount">RM19.90</div>
+        <div class="price-label">/ month · or RM159/year</div>
+        <div class="tier-desc">For people who want the app to feel like it was built just for them.</div>
+        <div class="feature-lines">
+          <div class="feature-line">Everything in Free</div>
+          <div class="feature-line">Custom workout builder</div>
+          <div class="feature-line">Custom meal planner</div>
+          <div class="feature-line">30-day & 90-day history</div>
+          <div class="feature-line">Extended mood trend charts</div>
+          <div class="feature-line">AI Weekly Check-in (coming soon)</div>
+          <div class="feature-line">Manage billing via Stripe</div>
+        </div>
+        <a href="https://weekly-reset.vercel.app/signup" class="price-cta">Start Pro free trial</a>
+      </div>
+    </div>
+
+    <p class="pricing-note">Payments processed securely by Stripe. Cancel any time. USD pricing also available ($4.99/mo or $39/year).</p>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials-bg">
+  <div class="testimonials-inner">
+    <div class="section-label">Early users</div>
+    <h2 class="section-title">People are already resetting.</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I've tried every fitness app and quit within a week. Weekly Reset is the first one that didn't make me feel like a failure for missing a day. The mood thing is genuinely clever."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SR</div>
+          <div>
+            <div class="author-name">Siti R.</div>
+            <div class="author-role">Kuala Lumpur, 27</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The water goal calculation alone is worth it. I never knew how much I was supposed to drink. Small thing, but it changed my whole day. Now I'm on a 14-day streak."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AH</div>
+          <div>
+            <div class="author-name">Amirul H.</div>
+            <div class="author-role">Shah Alam, 31</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Finally an app that doesn't assume you have a gym membership or 2 hours a day. Push-ups and a walk. That's it. I feel better after 3 weeks than I have in 3 years."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">FZ</div>
+          <div>
+            <div class="author-name">Farah Z.</div>
+            <div class="author-role">Penang, 29</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="background:var(--cream);">
+  <div class="cta-section">
+    <div class="section-label">Ready?</div>
+    <h2 class="section-title">Your reset starts today.</h2>
+    <p class="section-sub">No gym. No trainer. No excuses. Just you, the app, and one better week than the last.</p>
+    <div class="cta-actions">
+      <a href="https://weekly-reset.vercel.app/signup" class="btn-primary">Start for free →</a>
+      <a href="https://resetly.my" class="btn-secondary">Learn more at resetly.my</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Weekly <span>Reset</span></div>
+        <div class="footer-tagline">Reset your body. Slowly and surely.<br>by <a href="https://resetly.my" style="color:rgba(250,248,244,0.4);text-decoration:none;">Resetly</a></div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="https://weekly-reset.vercel.app">Open app</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="https://resetly.my">resetly.my</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="mailto:hello@resetly.my">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms of service</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Resetly. Built in Malaysia 🇲🇾</span>
+      <div class="footer-social">
+        <a href="#" class="social-link">f</a>
+        <a href="#" class="social-link">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
