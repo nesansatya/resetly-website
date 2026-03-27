@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — Weekly Reset</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#faf8f4;--cream-dark:#f0ede5;--dark:#1a1a18;--dark-2:#2a2a27;
+  --green:#4a7c2f;--green-light:#6fa84a;--green-pale:#eaf3de;
+  --text:#2c2c2a;--text-muted:#6b6b68;--text-light:#9a9a96;
+  --border:rgba(44,44,42,0.12);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,248,244,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--dark);text-decoration:none;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--dark);}
+.nav-cta{background:var(--dark);color:var(--cream)!important;padding:10px 22px;border-radius:100px;font-size:14px!important;font-weight:500!important;text-decoration:none;transition:background 0.2s,transform 0.15s!important;}
+.nav-cta:hover{background:var(--green)!important;transform:translateY(-1px);}
+
+/* HERO */
+.hero-bg-shapes{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0;}
+.hero-shape{position:absolute;border-radius:50%;background:rgba(74,124,47,0.06);animation:shapeDrift 12s ease-in-out infinite;}
+.hero-shape:nth-child(1){width:300px;height:300px;top:-80px;left:-60px;animation-delay:0s;}
+.hero-shape:nth-child(2){width:180px;height:180px;top:40%;right:5%;animation-delay:-4s;animation-duration:15s;}
+.hero-shape:nth-child(3){width:120px;height:120px;bottom:10%;left:30%;animation-delay:-8s;animation-duration:10s;}
+@keyframes shapeDrift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(12px,-18px) scale(1.04);}66%{transform:translate(-10px,10px) scale(0.97);}}
+
+.hero{min-height:100vh;padding:140px 40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-pale);border:1px solid rgba(74,124,47,0.2);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;color:var(--green);margin-bottom:28px;}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(48px,6vw,80px);line-height:1.0;color:var(--dark);margin-bottom:28px;letter-spacing:-0.5px;}
+.hero h1 em{font-style:italic;color:var(--green);}
+.hero-sub{font-size:19px;line-height:1.75;color:var(--text-muted);margin-bottom:44px;max-width:480px;}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.btn-primary{background:var(--dark);color:var(--cream);padding:16px 32px;border-radius:100px;font-size:16px;font-weight:500;text-decoration:none;transition:background 0.2s,transform 0.15s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{background:var(--green);transform:translateY(-2px);}
+.btn-secondary{color:var(--text-muted);font-size:15px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s;}
+.btn-secondary:hover{color:var(--dark);}
+
+/* SOCIAL PROOF */
+.social-proof{display:flex;align-items:center;gap:12px;margin-top:28px;}
+.avatar-stack{display:flex;}
+.avatar-bubble{width:32px;height:32px;border-radius:50%;border:2px solid var(--cream);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-left:-8px;color:white;}
+.avatar-bubble:first-child{margin-left:0;}
+.avatar-bubble:nth-child(1){background:#4a7c2f;}
+.avatar-bubble:nth-child(2){background:#2a5c1f;}
+.avatar-bubble:nth-child(3){background:#6fa84a;}
+.avatar-bubble:nth-child(4){background:#1a1a18;}
+.social-proof-text{font-size:14px;color:var(--text-muted);line-height:1.4;}
+.social-proof-text strong{color:var(--dark);font-weight:600;}
+
+/* STATS */
+.hero-stats{display:flex;gap:32px;margin-top:48px;padding-top:40px;border-top:1px solid var(--border);}
+.stat-num{font-family:'DM Serif Display',serif;font-size:40px;color:var(--dark);line-height:1;letter-spacing:-0.5px;}
+.stat-label{font-size:13px;color:var(--text-muted);margin-top:4px;}
+
+/* PHONE MOCKUP */
+.hero-visual{display:flex;justify-content:center;align-items:center;}
+.phone-frame{width:280px;background:var(--dark);border-radius:44px;padding:12px 12px 20px;box-shadow:0 40px 80px rgba(26,26,24,0.25),0 0 0 1px rgba(255,255,255,0.08);animation:float 6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
+.phone-notch{width:80px;height:24px;background:var(--dark);border-radius:0 0 16px 16px;margin:0 auto 8px;}
+.phone-screen{background:#faf8f4;border-radius:34px;overflow:hidden;height:560px;position:relative;}
+.phone-scroll{height:100%;overflow-y:auto;padding:20px 16px 80px;scrollbar-width:none;-ms-overflow-style:none;}
+.phone-scroll::-webkit-scrollbar{display:none;}
+.phone-nav{position:absolute;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--border);border-radius:0 0 34px 34px;padding:10px 0 14px;display:flex;justify-content:space-around;z-index:10;}
+.phone-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:var(--text-light);font-weight:500;}
+.phone-nav-item.active{color:var(--green);}
+.phone-nav-icon{font-size:16px;line-height:1;}
+.phone-scroll-fade{position:absolute;bottom:50px;left:0;right:0;height:48px;background:linear-gradient(to bottom,transparent,#faf8f4);pointer-events:none;z-index:8;}
+.phone-scroll-hint{position:absolute;bottom:58px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;z-index:9;animation:hintFade 2.5s ease-in-out 1s forwards;opacity:0;}
+@keyframes hintFade{0%{opacity:0;}25%{opacity:1;}75%{opacity:1;}100%{opacity:0;}}
+.scroll-chevron{width:10px;height:10px;border-right:2px solid rgba(74,124,47,0.7);border-bottom:2px solid rgba(74,124,47,0.7);transform:rotate(45deg);animation:chevronBounce 0.7s ease-in-out infinite alternate;}
+.scroll-chevron.c2{animation-delay:0.15s;margin-top:-5px;opacity:0.5;}
+@keyframes chevronBounce{0%{transform:rotate(45deg) translateY(-2px);}100%{transform:rotate(45deg) translateY(2px);}}
+.screen-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.screen-greeting{font-size:11px;color:var(--text-muted);}
+.screen-name{font-size:16px;font-weight:600;color:var(--dark);}
+.screen-avatar{width:32px;height:32px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.screen-card{background:var(--dark);border-radius:20px;padding:16px;margin-bottom:12px;color:var(--cream);}
+.screen-card-label{font-size:10px;opacity:0.6;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;}
+.screen-card-title{font-size:14px;font-weight:600;margin-bottom:8px;}
+.exercise-list{display:flex;flex-direction:column;gap:6px;}
+.exercise-item{background:rgba(255,255,255,0.08);border-radius:10px;padding:8px 12px;font-size:12px;display:flex;justify-content:space-between;align-items:center;}
+.exercise-check{width:18px;height:18px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:10px;}
+.habit-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.habit-pill{background:white;border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:11px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:6px;}
+.habit-pill.done{background:var(--green-pale);border-color:rgba(74,124,47,0.2);color:var(--green);}
+.habit-dot{width:8px;height:8px;border-radius:50%;background:currentColor;}
+.water-bar{background:white;border:1px solid var(--border);border-radius:14px;padding:12px 14px;}
+.water-bar-label{font-size:11px;color:var(--text-muted);margin-bottom:8px;display:flex;justify-content:space-between;}
+
+/* TRUST BAR */
+.trust-bar{background:var(--dark);padding:20px 0;overflow:hidden;position:relative;}
+.trust-bar::before,.trust-bar::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.trust-bar::before{left:0;background:linear-gradient(to right,#1a1a18,transparent);}
+.trust-bar::after{right:0;background:linear-gradient(to left,#1a1a18,transparent);}
+.trust-track{display:flex;width:max-content;animation:ticker 22s linear infinite;}
+.trust-track:hover{animation-play-state:paused;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-33.333%);}}
+.trust-item{display:flex;align-items:center;gap:10px;padding:0 40px;white-space:nowrap;}
+.trust-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.trust-num{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);line-height:1;}
+.trust-label{font-size:13px;color:rgba(250,248,244,0.5);margin-left:2px;}
+
+/* SECTIONS */
+section{padding:120px 40px;max-width:1200px;margin:0 auto;}
+.section-label{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(36px,4.5vw,58px);line-height:1.05;color:var(--dark);margin-bottom:24px;letter-spacing:-0.3px;}
+.section-sub{font-size:18px;line-height:1.7;color:var(--text-muted);max-width:540px;}
+
+/* FEATURES */
+.feature-hero-card{background:var(--dark);border-radius:20px 20px 0 0;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:2px;}
+.feature-hero-icon{width:64px;height:64px;background:rgba(74,124,47,0.3);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;}
+.feature-hero-title{font-family:'DM Serif Display',serif;font-size:38px;color:var(--cream);line-height:1.05;margin-bottom:16px;letter-spacing:-0.3px;}
+.feature-hero-desc{font-size:16px;line-height:1.7;color:rgba(250,248,244,0.6);}
+.feature-hero-right{background:rgba(255,255,255,0.06);border-radius:16px;padding:24px;}
+.mood-demo-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:rgba(250,248,244,0.4);margin-bottom:14px;}
+.mood-demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.mood-demo-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px;text-align:center;font-size:12px;color:rgba(250,248,244,0.6);}
+.mood-demo-btn.active{background:rgba(74,124,47,0.25);border-color:rgba(74,124,47,0.5);color:#7ac95a;font-weight:600;}
+.mood-demo-emoji{font-size:20px;display:block;margin-bottom:4px;}
+.mood-demo-response{background:rgba(74,124,47,0.15);border:1px solid rgba(74,124,47,0.25);border-radius:12px;padding:14px;font-size:13px;line-height:1.6;color:rgba(250,248,244,0.8);}
+.mood-demo-response strong{color:#7ac95a;display:block;margin-bottom:4px;}
+.feature-card{background:var(--cream);padding:40px 36px;transition:background 0.2s;}
+.feature-card:hover{background:white;}
+.feature-icon{width:52px;height:52px;background:var(--dark);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+.feature-title{font-size:18px;font-weight:600;color:var(--dark);margin-bottom:10px;}
+.feature-desc{font-size:15px;line-height:1.65;color:var(--text-muted);}
+
+/* JOURNEY */
+.journey-section{background:var(--dark);padding:120px 40px;}
+.journey-inner{max-width:1200px;margin:0 auto;}
+.journey-inner .section-label{color:rgba(74,124,47,0.9);}
+.journey-inner .section-title{color:var(--cream);margin-bottom:60px;}
+.journey-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,0.06);border-radius:24px;overflow:hidden;}
+.journey-step{padding:44px 32px;background:rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.06);transition:background 0.3s;}
+.journey-step:last-child{border-right:none;}
+.journey-step:hover{background:rgba(255,255,255,0.07);}
+.journey-week{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:14px;}
+.journey-heading{font-family:'DM Serif Display',serif;font-size:24px;color:var(--cream);line-height:1.15;margin-bottom:12px;letter-spacing:-0.2px;}
+.journey-desc{font-size:14px;line-height:1.7;color:rgba(250,248,244,0.5);}
+.journey-dot{width:10px;height:10px;border-radius:50%;background:var(--green);margin-bottom:20px;}
+
+/* HOW IT WORKS / DEMO */
+.how-wrap{max-width:1200px;margin:0 auto;padding:100px 40px;}
+.demo-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.demo-steps{display:flex;flex-direction:column;gap:0;}
+.demo-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all 0.2s;opacity:0.35;}
+.demo-step:last-child{border-bottom:none;}
+.demo-step.active{opacity:1;}
+.demo-step.active .demo-step-num{background:var(--green);color:white;}
+.demo-step:hover{opacity:0.7;}
+.demo-step-num{width:40px;height:40px;min-width:40px;border-radius:50%;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--text-muted);transition:all 0.3s;}
+.demo-step-title{font-size:17px;font-weight:600;color:var(--dark);margin-bottom:4px;}
+.demo-step-desc{font-size:14px;line-height:1.6;color:var(--text-muted);}
+.demo-phone-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.demo-phone{width:280px;background:var(--dark);border-radius:44px;padding:12px 12px 20px;box-shadow:0 40px 80px rgba(26,26,24,0.2),0 0 0 1px rgba(255,255,255,0.08);}
+.demo-screen{background:#faf8f4;border-radius:34px;padding:20px 16px;min-height:440px;overflow:hidden;}
+.demo-slide{display:none;animation:slideIn 0.35s ease;}
+.demo-slide.active{display:block;}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.goal-btn{background:white;border:1.5px solid var(--border);border-radius:12px;padding:10px 12px;font-size:12px;font-weight:500;color:var(--text);cursor:pointer;transition:all 0.15s;text-align:center;}
+.goal-btn.active{background:var(--green-pale);border-color:rgba(74,124,47,0.35);color:var(--green);}
+.goal-btn:hover{border-color:rgba(74,124,47,0.3);}
+.demo-next-btn{width:100%;margin-top:14px;background:var(--dark);color:var(--cream);border:none;border-radius:100px;padding:12px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;font-family:'DM Sans',sans-serif;}
+.demo-next-btn:hover{background:var(--green);}
+.mood-tap-btn{background:white;border:1.5px solid var(--border);border-radius:12px;padding:10px;text-align:center;font-size:11px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+.mood-tap-btn.active{background:var(--green-pale);border-color:rgba(74,124,47,0.35);color:var(--green);}
+.demo-dots{display:flex;gap:8px;}
+.demo-dot{width:8px;height:8px;border-radius:50%;background:var(--cream-dark);cursor:pointer;transition:all 0.25s;}
+.demo-dot.active{background:var(--green);width:24px;border-radius:100px;}
+
+/* PRICING */
+.pricing-section{background:var(--dark);padding:100px 40px;}
+.pricing-inner{max-width:900px;margin:0 auto;text-align:center;}
+.pricing-inner .section-title{color:var(--cream);}
+.pricing-inner .section-sub{color:rgba(250,248,244,0.6);margin:0 auto 60px;}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left;}
+.pricing-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:36px;position:relative;transition:transform 0.2s;}
+.pricing-card:hover{transform:translateY(-4px);}
+.pricing-card.featured{background:var(--cream);border-color:var(--cream);}
+.pricing-card.featured .price-amount,.pricing-card.featured .tier-name{color:var(--dark);}
+.pricing-card.featured .price-label,.pricing-card.featured .tier-desc{color:var(--text-muted);}
+.pricing-card.featured .feature-line{color:var(--text);border-color:var(--border);}
+.pricing-card.featured .price-cta{background:var(--dark);color:var(--cream);}
+.pricing-card.featured .price-cta:hover{background:var(--green);}
+.featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--green);color:white;font-size:12px;font-weight:600;padding:6px 18px;border-radius:100px;white-space:nowrap;}
+.tier-name{font-size:14px;font-weight:600;color:rgba(250,248,244,0.7);margin-bottom:20px;text-transform:uppercase;letter-spacing:1px;}
+.price-amount{font-family:'DM Serif Display',serif;font-size:48px;color:var(--cream);line-height:1;}
+.price-label{font-size:14px;color:rgba(250,248,244,0.4);margin-bottom:28px;}
+.tier-desc{font-size:14px;color:rgba(250,248,244,0.5);margin-bottom:24px;}
+.feature-lines{display:flex;flex-direction:column;gap:0;margin-bottom:28px;}
+.feature-line{font-size:14px;color:rgba(250,248,244,0.8);padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px;}
+.feature-line::before{content:'✓';color:var(--green);font-weight:700;font-size:13px;}
+.price-cta{display:block;background:rgba(255,255,255,0.1);color:var(--cream);border:none;border-radius:100px;padding:14px 28px;font-size:15px;font-weight:500;text-align:center;text-decoration:none;cursor:pointer;transition:background 0.2s,transform 0.15s;width:100%;}
+.price-cta:hover{background:rgba(255,255,255,0.18);transform:translateY(-1px);}
+.pricing-note{font-size:14px;color:rgba(250,248,244,0.4);margin-top:32px;}
+
+/* TESTIMONIALS */
+.testimonials-bg{background:var(--cream-dark);padding:100px 40px;}
+.testimonials-inner{max-width:1200px;margin:0 auto;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;}
+.testimonial-card{background:white;border:1px solid var(--border);border-radius:20px;padding:28px;transition:transform 0.2s,box-shadow 0.2s;}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,26,24,0.08);}
+.testimonial-stars{color:#f59e0b;font-size:14px;margin-bottom:14px;}
+.testimonial-text{font-size:15px;line-height:1.7;color:var(--text);margin-bottom:20px;}
+.testimonial-author{display:flex;align-items:center;gap:12px;}
+.author-avatar{width:36px;height:36px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--green);}
+.author-name{font-size:14px;font-weight:600;color:var(--dark);}
+.author-role{font-size:12px;color:var(--text-muted);}
+
+/* CTA */
+.cta-section{padding:120px 40px;max-width:900px;margin:0 auto;text-align:center;}
+.cta-section .section-title{margin-bottom:20px;}
+.cta-section .section-sub{margin:0 auto 48px;}
+.cta-actions{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:var(--dark);padding:60px 40px 40px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:40px;flex-wrap:wrap;gap:40px;}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:24px;color:var(--cream);margin-bottom:10px;}
+.footer-logo span{color:var(--green);}
+.footer-tagline{font-size:14px;color:rgba(250,248,244,0.4);}
+.footer-links{display:flex;gap:48px;flex-wrap:wrap;}
+.footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(250,248,244,0.4);margin-bottom:16px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col li a{font-size:14px;color:rgba(250,248,244,0.6);text-decoration:none;transition:color 0.2s;}
+.footer-col li a:hover{color:var(--cream);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(250,248,244,0.3);flex-wrap:wrap;gap:12px;}
+.footer-social{display:flex;gap:16px;}
+.social-link{width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(250,248,244,0.5);text-decoration:none;font-size:14px;transition:all 0.2s;}
+.social-link:hover{border-color:rgba(255,255,255,0.3);color:var(--cream);}
+
+/* LEGAL PAGES */
+.legal-hero{background:var(--dark);padding:120px 40px 60px;}
+.legal-hero-inner{max-width:800px;margin:0 auto;}
+.legal-back{display:inline-flex;align-items:center;gap:6px;color:rgba(250,248,244,0.5);text-decoration:none;font-size:14px;font-weight:500;margin-bottom:24px;transition:color 0.2s;}
+.legal-back:hover{color:var(--cream);}
+.legal-hero .section-label{color:rgba(74,124,47,0.9);}
+.legal-hero .section-title{color:var(--cream);margin-bottom:16px;}
+.legal-meta{font-size:14px;color:rgba(250,248,244,0.4);}
+.legal-body{background:var(--cream);padding:60px 40px 100px;}
+.legal-content{max-width:800px;margin:0 auto;}
+.legal-section{padding:36px 0;border-bottom:1px solid var(--border);}
+.legal-section:last-child{border-bottom:none;}
+.legal-section h2{font-family:'DM Serif Display',serif;font-size:22px;color:var(--dark);margin-bottom:16px;}
+.legal-section p{font-size:15px;line-height:1.8;color:var(--text-muted);margin-bottom:12px;}
+.legal-section p:last-child{margin-bottom:0;}
+.legal-section ul{margin:12px 0 12px 20px;display:flex;flex-direction:column;gap:10px;}
+.legal-section ul li{font-size:15px;line-height:1.7;color:var(--text-muted);}
+.legal-section a{color:var(--green);text-decoration:none;}
+.legal-section a:hover{text-decoration:underline;}
+.legal-contact-box{background:var(--cream-dark);border:1px solid var(--border);border-radius:16px;padding:20px 24px;font-size:15px;line-height:1.8;color:var(--text);margin-top:16px;}
+.legal-highlight{background:rgba(74,124,47,0.06);border-left:3px solid var(--green);border-radius:0 12px 12px 0;padding:16px 20px;font-size:15px;line-height:1.8;color:var(--text-muted);}
+
+/* FLOATING DOWNLOAD BAR */
+.floating-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:var(--dark);
+  padding:16px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  transform:translateY(100%);
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.floating-bar.visible{transform:translateY(0);}
+.floating-bar-left{display:flex;align-items:center;gap:14px;}
+.floating-bar-icon{width:44px;height:44px;background:var(--green);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.floating-bar-text{color:var(--cream);}
+.floating-bar-title{font-size:15px;font-weight:600;line-height:1.2;}
+.floating-bar-sub{font-size:12px;color:rgba(250,248,244,0.5);margin-top:2px;}
+.floating-bar-actions{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.floating-bar-btn{background:var(--green);color:white;border:none;border-radius:100px;padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.floating-bar-btn:hover{background:#5a9c3a;}
+.floating-bar-web{font-size:13px;color:rgba(250,248,244,0.4);text-decoration:none;white-space:nowrap;transition:color 0.2s;}
+.floating-bar-web:hover{color:rgba(250,248,244,0.7);}
+.floating-bar-close{background:rgba(255,255,255,0.08);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;color:rgba(250,248,244,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s;}
+.floating-bar-close:hover{background:rgba(255,255,255,0.15);}
+@media(max-width:768px){
+  .floating-bar{padding:12px 20px;flex-wrap:wrap;gap:12px;}
+  .floating-bar-web{display:none;}
+  .floating-bar-btn{padding:10px 20px;font-size:13px;}
+}
+
+/* Hide all sub-pages by default - JS shows them */
+#page-privacy,#page-terms,#page-contact,#page-story{display:none!important;}
+
+/* ANIMATIONS */
+.fade-up{opacity:1;transform:translateY(0);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-up:nth-child(2){transition-delay:0.1s;}
+.fade-up:nth-child(3){transition-delay:0.2s;}
+.fade-up:nth-child(4){transition-delay:0.3s;}
+.hero-badges-row{display:none;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;gap:48px;padding:120px 20px 60px;}
+  .hero-visual{order:-1;}
+  .phone-frame{width:240px;}
+  .hero-stats{gap:20px;}
+  section{padding:64px 20px;}
+  .feature-hero-card{grid-template-columns:1fr;padding:28px;}
+  .journey-timeline{grid-template-columns:1fr 1fr;}
+  .journey-section{padding:64px 20px;}
+  .demo-wrap{grid-template-columns:1fr;gap:40px;}
+  .demo-phone-wrap{order:-1;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  .outcomes-grid{grid-template-columns:1fr!important;}
+  .how-wrap{padding:64px 20px;}
+  .testimonials-bg{padding:64px 20px;}
+  .pricing-section{padding:64px 20px;}
+  .cta-section{padding:80px 20px;}
+  footer{padding:48px 20px 32px;}
+  .footer-top{flex-direction:column;}
+  .legal-hero{padding:100px 20px 48px;}
+  .legal-body{padding:40px 20px 80px;}
+}
+
+.legal-back{display:inline-flex;align-items:center;gap:6px;color:rgba(250,248,244,0.5);text-decoration:none;font-size:14px;font-weight:500;margin-bottom:24px;transition:color 0.2s;}
+.legal-back:hover{color:var(--cream);}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Weekly <span>Reset</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#how-it-works">How it works</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="#" onclick="if(window.showDownload)showDownload();return false;" class="nav-cta">Download App &rarr;</a></li>
+  </ul>
+</nav><!-- OUR STORY PAGE -->
+
+
+  <!-- Dark hero -->
+  <div style="background:#1a1a18;padding:0;position:relative;overflow:hidden;min-height:480px;display:flex;align-items:flex-end;">
+    <div style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;">
+      <svg width="100%" height="100%" viewBox="0 0 1200 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <circle cx="900" cy="100" r="400" fill="rgba(74,124,47,0.05)"/>
+        <circle cx="100" cy="400" r="300" fill="rgba(74,124,47,0.04)"/>
+        <circle cx="600" cy="240" r="200" fill="rgba(74,124,47,0.03)"/>
+      </svg>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:140px 40px 80px;position:relative;z-index:1;">
+      <a href="#" href="index.html" class="legal-back">&larr; Back to home</a>
+      <div style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(74,124,47,0.9);margin-bottom:20px;margin-top:24px;">Our story</div>
+      <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,80px);color:#faf8f4;line-height:1.0;letter-spacing:-1px;margin-bottom:28px;">We were part of<br>the <em style="color:#7ac95a;font-style:italic;">statistic.</em></h1>
+      <p style="font-size:19px;line-height:1.75;color:rgba(250,248,244,0.55);max-width:620px;">The average person tries and quits a fitness routine 4 times a year. We know this because we lived it. Weekly Reset was built from that failure &mdash; not in spite of it.</p>
+    </div>
+  </div>
+
+  <!-- Quit counter stat strip -->
+  <div style="background:#4a7c2f;padding:24px 40px;">
+    <div style="max-width:1000px;margin:0 auto;display:flex;gap:0;flex-wrap:wrap;">
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;border-right:1px solid rgba(255,255,255,0.15);">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">4x</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">Average quits per year</div>
+      </div>
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;border-right:1px solid rgba(255,255,255,0.15);">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">3</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">Days average before quitting</div>
+      </div>
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;border-right:1px solid rgba(255,255,255,0.15);">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">$0</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">Should cost to start</div>
+      </div>
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">1</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">App built to fix this</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story chapters -->
+  <div style="background:#faf8f4;padding:80px 40px;">
+    <div style="max-width:1000px;margin:0 auto;">
+
+      <!-- Chapter 01 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">01</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">The problem</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">We lived the problem<br>before we solved it.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We weren't athletes. We were regular people who kept downloading fitness apps, feeling instantly overwhelmed, and quitting by day three. Every single time.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">Every app we tried assumed we were already motivated. They were built for the version of us we wanted to be &mdash; not the version that existed on a Tuesday night after a long day of work, scrolling through a 47-exercise programme wondering where to even begin.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;">The gym was expensive. The personal trainers were more expensive. And every "free" app had a paywall on the third screen. We were tired of it. So we decided to do something about it.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 02 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">02</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">The research</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">The answer wasn't<br>willpower. It was friction.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We spent months understanding why people quit. Not why they start &mdash; that part is easy. Everyone starts. The question was why they stop, and why they always stop at the same point.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">The pattern was clear. Too many features. Too much guilt when you miss a day. No personalisation for bad days. Apps that respond to "I'm exhausted and low" with "here's your 45-minute HIIT session."</p>
+          <div style="background:#eaf3de;border-left:3px solid #4a7c2f;border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0;">
+            <p style="font-size:16px;line-height:1.75;color:#3b6d11;font-style:italic;">"What if the app could read how you feel today &mdash; and actually respond to that instead of just ignoring it?"</p>
+          </div>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;">That question became the entire product philosophy. Every feature in Weekly Reset was built to answer it.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 03 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">03</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">The build</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">From blank screen<br>to live app. One session.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We built Weekly Reset from scratch &mdash; zero to live web app, Android APK, and payment processing &mdash; in a single extended session. No agency. No massive team. Just relentless focus and a clear vision.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:24px;">Every decision was weighed against one question: <strong style="color:#1a1a18;">does this make it easier or harder to quit?</strong> If a feature added friction, it was cut. If a screen felt overwhelming, it was simplified. We do things right from the start &mdash; or we don't do them at all.</p>
+          <!-- Timeline -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;gap:20px;align-items:flex-start;padding-bottom:20px;">
+              <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:12px;height:12px;border-radius:50%;background:#4a7c2f;margin-top:4px;flex-shrink:0;"></div><div style="width:1px;flex:1;background:rgba(74,124,47,0.2);margin-top:6px;min-height:32px;"></div></div>
+              <div><div style="font-size:14px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Phase 1 &mdash; The free version</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Full web app with dashboard, habits, mood coaching, water tracker, meal guide and progress screen.</div></div>
+            </div>
+            <div style="display:flex;gap:20px;align-items:flex-start;padding-bottom:20px;">
+              <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:12px;height:12px;border-radius:50%;background:#4a7c2f;margin-top:4px;flex-shrink:0;"></div><div style="width:1px;flex:1;background:rgba(74,124,47,0.2);margin-top:6px;min-height:32px;"></div></div>
+              <div><div style="font-size:14px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Phase 2 &mdash; Monetisation</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Stripe payments, Pro features, custom workout builder, extended history and billing portal.</div></div>
+            </div>
+            <div style="display:flex;gap:20px;align-items:flex-start;">
+              <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:12px;height:12px;border-radius:50%;background:#4a7c2f;margin-top:4px;flex-shrink:0;"></div></div>
+              <div><div style="font-size:14px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Phase 3 &mdash; Android app</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Native Android APK via Capacitor. The web app became a real app on a real phone.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 04 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">04</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">Who it's for</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">Not for athletes.<br>For the rest of us.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We built this for people aged 25 to 35 who are budget-conscious, have previously tried and failed at building health routines, and want to feel better &mdash; not become an athlete.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:24px;">The person who opens the app on a bad day and needs to be told that one 10-minute walk is enough. The person who has tried every other app and always ended up back at zero. That person is who every single decision was made for.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Budget-conscious</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">No gym. No trainer. No hidden costs.</div></div>
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Previously quit</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Built for the person who keeps starting over.</div></div>
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Not an athlete</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Wants to feel better. Not win a marathon.</div></div>
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Real life</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Bad days included. The app adjusts.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 05 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">05</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">Why it exists</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">Wellness shouldn't need<br>a membership fee.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We believe the baseline of feeling healthy &mdash; moving your body, drinking enough water, sleeping properly, eating reasonably &mdash; should be accessible to everyone. Not just people who can afford a gym or a personal trainer.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">Motivation shouldn't be a prerequisite either. Most people aren't unmotivated &mdash; they're overwhelmed. Give someone a simple structure, meet them on their bad days, and watch what happens.</p>
+          <div style="background:#1a1a18;border-radius:20px;padding:32px 36px;margin-top:8px;">
+            <p style="font-family:'DM Serif Display',serif;font-size:22px;color:#faf8f4;line-height:1.4;margin-bottom:0;"><em style="color:#7ac95a;">"One 10-minute walk on a bad day is worth more than a perfect week you never started."</em></p>
+            <div style="font-size:13px;color:rgba(250,248,244,0.4);margin-top:16px;">The philosophy behind every Weekly Reset feature.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 06 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">06</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">Where we're going</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">Just getting started.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:28px;">Google Play Store. iOS. AI-powered weekly coaching. A referral system built around genuine results. Every step guided by the same north star &mdash; the simplest possible path to feeling better.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:36px;">
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:#4a7c2f;font-weight:700;">&#10003;</span> Android app &mdash; live now</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:#4a7c2f;font-weight:700;">&#10003;</span> Web app &mdash; live now</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:rgba(44,44,42,0.25);font-weight:700;">&#10003;</span> Google Play Store &mdash; coming soon</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:rgba(44,44,42,0.25);font-weight:700;">&#10003;</span> AI Weekly Check-in &mdash; coming soon</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:rgba(44,44,42,0.25);font-weight:700;">&#10003;</span> iOS app &mdash; coming soon</div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+            <a href="#" href="index.html" style="background:#1a1a18;color:#faf8f4;border-radius:100px;padding:16px 32px;font-size:16px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s;" onmouseover="this.style.background='#4a7c2f'" onmouseout="this.style.background='#1a1a18'">&#8681; Download for Android</a>
+            <a href="#" href="index.html" style="font-size:15px;font-weight:500;color:#6b6b68;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#1a1a18'" onmouseout="this.style.color='#6b6b68'">Explore the app &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom dark sign-off -->
+  <div style="background:#1a1a18;padding:64px 40px;text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+      <div style="font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,44px);color:#faf8f4;line-height:1.15;margin-bottom:16px;">We do things right<br>from the start.</div>
+      <p style="font-size:16px;color:rgba(250,248,244,0.5);line-height:1.7;margin-bottom:32px;">That's the founding philosophy. It drives every feature, every decision, every line of code. Weekly Reset isn't just an app &mdash; it's proof that the right product, built with the right values, can change how people feel about themselves.</p>
+      <div style="font-size:14px;color:rgba(250,248,244,0.3);">The Weekly Reset Team &mdash; Built with love in Malaysia &#127474;&#127486;</div>
+    </div>
+  </div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Weekly <span>Reset</span></div>
+        <div class="footer-tagline">Reset your body. Slowly and surely.<br>by <a href="https://resetly.my" style="color:rgba(250,248,244,0.4);text-decoration:none;">Resetly</a></div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#how-it-works">How it works</a></li>
+            <li><a href="index.html" onclick="if(window.showDownload)showDownload();return false;">Download for Android</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="https://www.instagram.com/resetlyapp/">Instagram</a></li>
+            <li><a href="https://www.facebook.com/resetlyapp/">Facebook</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="terms.html">Terms of service</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Resetly. Built in Malaysia &#127474;&#127486;</span>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/resetlyapp/" class="social-link">f</a>
+        <a href="https://www.instagram.com/resetlyapp/" class="social-link">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
