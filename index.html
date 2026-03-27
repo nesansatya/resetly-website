@@ -266,6 +266,35 @@ footer{background:var(--dark);padding:60px 40px 40px;}
 .legal-contact-box{background:var(--cream-dark);border:1px solid var(--border);border-radius:16px;padding:20px 24px;font-size:15px;line-height:1.8;color:var(--text);margin-top:16px;}
 .legal-highlight{background:rgba(74,124,47,0.06);border-left:3px solid var(--green);border-radius:0 12px 12px 0;padding:16px 20px;font-size:15px;line-height:1.8;color:var(--text-muted);}
 
+/* FLOATING DOWNLOAD BAR */
+.floating-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:var(--dark);
+  padding:16px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  transform:translateY(100%);
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.floating-bar.visible{transform:translateY(0);}
+.floating-bar-left{display:flex;align-items:center;gap:14px;}
+.floating-bar-icon{width:44px;height:44px;background:var(--green);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.floating-bar-text{color:var(--cream);}
+.floating-bar-title{font-size:15px;font-weight:600;line-height:1.2;}
+.floating-bar-sub{font-size:12px;color:rgba(250,248,244,0.5);margin-top:2px;}
+.floating-bar-actions{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.floating-bar-btn{background:var(--green);color:white;border:none;border-radius:100px;padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.floating-bar-btn:hover{background:#5a9c3a;}
+.floating-bar-web{font-size:13px;color:rgba(250,248,244,0.4);text-decoration:none;white-space:nowrap;transition:color 0.2s;}
+.floating-bar-web:hover{color:rgba(250,248,244,0.7);}
+.floating-bar-close{background:rgba(255,255,255,0.08);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;color:rgba(250,248,244,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s;}
+.floating-bar-close:hover{background:rgba(255,255,255,0.15);}
+@media(max-width:768px){
+  .floating-bar{padding:12px 20px;flex-wrap:wrap;gap:12px;}
+  .floating-bar-web{display:none;}
+  .floating-bar-btn{padding:10px 20px;font-size:13px;}
+}
+
 /* ANIMATIONS */
 .fade-up{opacity:1;transform:translateY(0);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade-up:nth-child(2){transition-delay:0.1s;}
@@ -310,9 +339,25 @@ footer{background:var(--dark);padding:60px 40px 40px;}
     <li><a href="#features">Features</a></li>
     <li><a href="#how-it-works">How it works</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="https://weekly-reset.vercel.app" class="nav-cta">Start free &rarr;</a></li>
+    <li><a href="#" onclick="showDownload();return false;" class="nav-cta">Download App &rarr;</a></li>
   </ul>
 </nav>
+
+<!-- FLOATING DOWNLOAD BAR -->
+<div class="floating-bar" id="floating-bar">
+  <div class="floating-bar-left">
+    <div class="floating-bar-icon">&#127807;</div>
+    <div class="floating-bar-text">
+      <div class="floating-bar-title">Weekly Reset &mdash; Free Android App</div>
+      <div class="floating-bar-sub">Download now. No gym. No credit card. No excuses.</div>
+    </div>
+  </div>
+  <div class="floating-bar-actions">
+    <a href="https://weekly-reset.vercel.app/signup" class="floating-bar-web">Start on web instead</a>
+    <button class="floating-bar-btn" onclick="showDownload()">&#8681; Download free</button>
+    <button class="floating-bar-close" onclick="dismissBar()">&#10005;</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <div style="position:relative;overflow:hidden;">
@@ -331,12 +376,15 @@ footer{background:var(--dark);padding:60px 40px 40px;}
   </div>
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-badge">Now live on Android &amp; Web</div>
+      <div class="hero-badge">Free to download &mdash; Android app available now</div>
       <h1>Built for the person<br>who keeps <em>quitting.</em></h1>
       <p class="hero-sub">No gym. No trainer. No excuses. Weekly Reset is the last wellness app you'll try &mdash; built for people who want to feel better without spending a single cent on a gym.</p>
       <div class="hero-actions">
-        <a href="https://weekly-reset.vercel.app/signup" class="btn-primary">Start for free &rarr;</a>
+        <a href="#" onclick="showDownload();return false;" class="btn-primary">&#8681; Download for Android</a>
         <a href="#how-it-works" class="btn-secondary">See how it works &darr;</a>
+      </div>
+      <div style="margin-top:12px;">
+        <a href="https://weekly-reset.vercel.app/signup" style="font-size:13px;color:var(--text-light);text-decoration:none;border-bottom:1px solid rgba(44,44,42,0.2);padding-bottom:1px;">Prefer the web version? Start here &rarr;</a>
       </div>
       <div class="social-proof">
         <div class="avatar-stack">
@@ -871,8 +919,8 @@ function toggleFaq(btn){
     <h2 class="section-title" style="font-size:clamp(40px,5vw,64px);">Try it free.<br>No gym. No excuses.</h2>
     <p class="section-sub">You've tried apps before. This one is different &mdash; because it was built for the version of you that keeps quitting. Start free. Stay because it works.</p>
     <div class="cta-actions">
-      <a href="https://weekly-reset.vercel.app/signup" class="btn-primary">Start for free &rarr;</a>
-      <a href="#features" class="btn-secondary">See what's included &darr;</a>
+      <a href="#" onclick="showDownload();return false;" class="btn-primary">Download for Android &rarr;</a>
+      <a href="https://weekly-reset.vercel.app/signup" class="btn-secondary">Or start on web &rarr;</a>
     </div>
   </div>
 </div>
@@ -892,7 +940,7 @@ function toggleFaq(btn){
             <li><a href="#features">Features</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#how-it-works">How it works</a></li>
-            <li><a href="https://weekly-reset.vercel.app">Open app</a></li>
+            <li><a href="#" onclick="showDownload();return false;">Download for Android</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -983,6 +1031,25 @@ function showPage(page){
   document.getElementById('page-contact').style.display=page==='contact'?'block':'none';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+
+var barDismissed = false;
+function dismissBar(){
+  barDismissed = true;
+  document.getElementById('floating-bar').classList.remove('visible');
+}
+window.addEventListener('scroll', function(){
+  if(barDismissed) return;
+  var hero = document.querySelector('.hero');
+  if(!hero) return;
+  var heroBottom = hero.getBoundingClientRect().bottom;
+  var bar = document.getElementById('floating-bar');
+  if(heroBottom < 0){
+    bar.classList.add('visible');
+  } else {
+    bar.classList.remove('visible');
+  }
+});
 
 var demoName='Nesh';
 var demoGoal='More energy';
@@ -1149,4 +1216,104 @@ function submitContact(){
   var name=document.getElementById('cf-name').value.trim();
   var email=document.getElementById('cf-email').value.trim();
   var topic=document.getElementById('cf-topic').value;
-  var msg=document.getElementById('cf-message').val
+  var msg=document.getElementById('cf-message').value().trim();
+  if(!name||!email||!topic||!msg){alert('Please fill in all fields before sending.');return;}
+  var mailto='mailto:hello@resetly.my?subject='+encodeURIComponent('['+topic+'] Message from '+name)+'&body='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nTopic: '+topic+'\n\nMessage:\n'+msg);
+  window.location.href=mailto;
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('contact-success').style.display='block';
+}
+</script>
+
+<!-- DOWNLOAD MODAL -->
+<div id="download-overlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,26,24,0.75);z-index:999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#faf8f4;border-radius:28px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;scrollbar-width:none;-ms-overflow-style:none;">
+    <div style="background:#1a1a18;border-radius:28px 28px 0 0;padding:32px 36px 28px;">
+      <button onclick="closeDownload()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;color:#faf8f4;line-height:1;">&#10005;</button>
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(74,124,47,0.9);margin-bottom:10px;">Your download has started</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:26px;color:#faf8f4;line-height:1.2;margin-bottom:8px;">Install Weekly Reset<br>on your Android.</div>
+      <p style="font-size:14px;color:rgba(250,248,244,0.5);line-height:1.6;">We're not on the Play Store yet &mdash; that's coming soon. Follow the steps below to install in under 2 minutes.</p>
+    </div>
+    <div style="display:flex;gap:0;border-bottom:1px solid rgba(44,44,42,0.12);padding:0 36px;background:white;">
+      <button id="tab-samsung" onclick="switchTab('samsung')" style="padding:14px 20px;border:none;border-bottom:2px solid #4a7c2f;background:transparent;font-size:14px;font-weight:600;color:#1a1a18;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:-1px;">Samsung</button>
+      <button id="tab-android" onclick="switchTab('android')" style="padding:14px 20px;border:none;border-bottom:2px solid transparent;background:transparent;font-size:14px;font-weight:500;color:#6b6b68;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:-1px;">Other Android</button>
+      <button id="tab-xiaomi" onclick="switchTab('xiaomi')" style="padding:14px 20px;border:none;border-bottom:2px solid transparent;background:transparent;font-size:14px;font-weight:500;color:#6b6b68;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:-1px;">Xiaomi / Redmi</button>
+    </div>
+    <div style="padding:28px 36px;">
+
+      <div id="steps-samsung">
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Open Settings</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Go to your phone's Settings app.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">2</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Security &amp; Privacy</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Tap <strong>Security &amp; Privacy</strong> in your Settings.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">3</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Turn off Auto Blocker</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Find <strong>Auto Blocker</strong> and toggle it <strong>off</strong>.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">4</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Open the downloaded file</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Go to Downloads, tap the Weekly Reset APK file and tap <strong>Install</strong>.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#4a7c2f;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">5</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Tap Open &amp; start your reset!</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Sign up and you're in. Your reset starts now.</div></div></div>
+        </div>
+        <div style="background:#eaf3de;border:1px solid rgba(74,124,47,0.2);border-radius:16px;padding:18px 20px;margin-bottom:20px;">
+          <div style="font-size:14px;font-weight:700;color:#4a7c2f;margin-bottom:6px;">&#10003; Done installing? Turn Auto Blocker back on.</div>
+          <div style="font-size:13px;line-height:1.7;color:#3b6d11;">We actually recommend this. Weekly Reset has enterprise-grade security built in &mdash; your data is encrypted and protected. Auto Blocker keeps your phone safe from other apps. <strong>Turn it back on once we're installed.</strong> Go to Settings &rarr; Security &amp; Privacy &rarr; Auto Blocker &rarr; toggle back on.</div>
+        </div>
+      </div>
+
+      <div id="steps-android" style="display:none;">
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Open Settings</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Go to your phone's Settings app.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">2</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Apps &rarr; Special App Access</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Tap <strong>Apps</strong>, then <strong>Special App Access</strong> or <strong>Special Permissions</strong>.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">3</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Install Unknown Apps</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Tap <strong>Install Unknown Apps</strong>, select your browser or file manager and allow it.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">4</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Open the downloaded file</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Go to Downloads, tap the Weekly Reset APK and tap <strong>Install</strong>.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#4a7c2f;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">5</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Tap Open &amp; start your reset!</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Sign up and you're in. Your reset starts now.</div></div></div>
+        </div>
+        <div style="background:#eaf3de;border:1px solid rgba(74,124,47,0.2);border-radius:16px;padding:18px 20px;margin-bottom:20px;">
+          <div style="font-size:14px;font-weight:700;color:#4a7c2f;margin-bottom:6px;">&#10003; Done installing? Disable the permission again.</div>
+          <div style="font-size:13px;line-height:1.7;color:#3b6d11;">We recommend turning off Install Unknown Apps once Weekly Reset is installed. Weekly Reset has enterprise-grade security &mdash; your data is encrypted and protected. <strong>Keep your phone safe by disabling this permission after installation.</strong></div>
+        </div>
+      </div>
+
+      <div id="steps-xiaomi" style="display:none;">
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Open Settings</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Go to your phone's Settings app.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">2</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Privacy Protection</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Tap <strong>Privacy Protection</strong> then <strong>Special Permissions</strong>.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">3</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Install Unknown Apps</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Tap <strong>Install Unknown Apps</strong>, select your browser or file manager and enable it.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#1a1a18;color:#faf8f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">4</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Open the downloaded file</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Go to Downloads, tap the Weekly Reset APK and tap <strong>Install</strong>.</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:28px;height:28px;min-width:28px;border-radius:50%;background:#4a7c2f;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">5</div><div><div style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Tap Open &amp; start your reset!</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Sign up and you're in. Your reset starts now.</div></div></div>
+        </div>
+        <div style="background:#eaf3de;border:1px solid rgba(74,124,47,0.2);border-radius:16px;padding:18px 20px;margin-bottom:20px;">
+          <div style="font-size:14px;font-weight:700;color:#4a7c2f;margin-bottom:6px;">&#10003; Done installing? Disable the permission again.</div>
+          <div style="font-size:13px;line-height:1.7;color:#3b6d11;">We recommend turning off Install Unknown Apps once Weekly Reset is installed. Weekly Reset has enterprise-grade security &mdash; your data is encrypted and protected. <strong>Keep your phone safe by disabling this permission after installation.</strong></div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid rgba(44,44,42,0.12);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div style="font-size:13px;color:#6b6b68;">Having trouble installing?</div>
+        <a href="#" onclick="closeDownload();showPage('contact');return false;" style="font-size:13px;font-weight:600;color:#4a7c2f;text-decoration:none;">Contact us &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>#download-overlay > div::-webkit-scrollbar{display:none;}</style>
+<script>
+function showDownload(){
+  document.getElementById('download-overlay').style.display='flex';
+  document.getElementById('download-overlay').style.alignItems='center';
+  document.getElementById('download-overlay').style.justifyContent='center';
+}
+function closeDownload(){
+  document.getElementById('download-overlay').style.display='none';
+}
+function switchTab(tab){
+  ['samsung','android','xiaomi'].forEach(function(t){
+    document.getElementById('steps-'+t).style.display=t===tab?'block':'none';
+    var btn=document.getElementById('tab-'+t);
+    btn.style.color=t===tab?'#1a1a18':'#6b6b68';
+    btn.style.fontWeight=t===tab?'600':'500';
+    btn.style.borderBottomColor=t===tab?'#4a7c2f':'transparent';
+  });
+}
+document.getElementById('download-overlay').addEventListener('click',function(e){
+  if(e.target===this)closeDownload();
+});
+</script>
+
+</body>
+</html>
