@@ -295,6 +295,68 @@ footer{background:var(--dark);padding:60px 40px 40px;}
   .floating-bar-btn{padding:10px 20px;font-size:13px;}
 }
 
+/* HAMBURGER NAV */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;width:36px;height:36px;}
+.nav-hamburger span{display:block;height:2px;background:var(--dark);border-radius:2px;transition:all 0.25s;}
+.mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;z-index:99;background:rgba(250,248,244,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);flex-direction:column;padding:16px 24px 24px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:16px;font-weight:500;color:var(--text-muted);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--dark);}
+.mobile-menu-cta{background:var(--dark);color:var(--cream)!important;border-radius:100px;padding:14px 24px!important;text-align:center;margin-top:12px;font-weight:600!important;border-bottom:none!important;}
+
+@media(max-width:768px){
+  /* NAV */
+  .nav-hamburger{display:flex;}
+
+  /* HERO */
+  .hero h1{font-size:clamp(38px,9vw,52px);}
+  .hero-sub{font-size:17px;}
+  .hero-stats{gap:16px;padding-top:28px;margin-top:32px;}
+  .stat-num{font-size:30px;}
+
+  /* JOURNEY - single column on mobile */
+  .journey-timeline{grid-template-columns:1fr!important;}
+  .journey-step{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .journey-step:last-child{border-bottom:none;}
+
+  /* FEATURES */
+  .feature-hero-card{padding:24px!important;}
+  .feature-hero-title{font-size:28px;}
+  .mood-demo-grid{grid-template-columns:1fr 1fr;}
+
+  /* HOW IT WORKS */
+  .how-wrap{padding:48px 20px!important;}
+
+  /* FAQ */
+  .faq-q{padding:16px 18px;font-size:15px;}
+  .faq-a{padding:0 18px 16px;font-size:14px;}
+
+  /* PRICING */
+  .pricing-section{padding:64px 20px;}
+
+  /* TESTIMONIALS */
+  .testimonials-bg{padding:64px 20px;}
+
+  /* CTA */
+  .cta-section{padding:80px 20px;}
+
+  /* FOOTER */
+  footer{padding:48px 20px 32px;}
+  .footer-top{flex-direction:column;}
+  .footer-links{gap:32px;}
+
+  /* LEGAL */
+  .legal-hero{padding:100px 20px 40px;}
+  .legal-body{padding:32px 20px 60px;}
+
+  /* FLOATING BAR */
+  .floating-bar{padding:12px 16px;gap:10px;}
+  .floating-bar-web{display:none;}
+  .floating-bar-btn{padding:10px 18px;font-size:13px;}
+  .floating-bar-sub{display:none;}
+}
+
 /* ANIMATIONS */
 .fade-up{opacity:1;transform:translateY(0);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade-up:nth-child(2){transition-delay:0.1s;}
@@ -341,7 +403,16 @@ footer{background:var(--dark);padding:60px 40px 40px;}
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#" onclick="showDownload();return false;" class="nav-cta">Download App &rarr;</a></li>
   </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#features" onclick="closeMenu()">Features</a>
+  <a href="#how-it-works" onclick="closeMenu()">How it works</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#" onclick="closeMenu();showDownload();return false;" class="mobile-menu-cta">&#8681; Download for Android</a>
+</div>
 
 <!-- FLOATING DOWNLOAD BAR -->
 <div class="floating-bar" id="floating-bar">
@@ -759,7 +830,7 @@ function setCurrency(cur) {
 </script>
 
 <!-- FAQ -->
-<div style="background:var(--cream);padding:100px 40px;">
+<div class="faq-section" style="background:var(--cream);padding:100px 40px;">
   <div style="max-width:800px;margin:0 auto;">
     <div style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-bottom:16px;">Questions</div>
     <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,52px);line-height:1.1;color:#1a1a18;margin-bottom:12px;">You probably have a few.</h2>
@@ -862,7 +933,7 @@ function toggleFaq(btn){
       <div style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(74,124,47,0.9);margin-bottom:16px;">Real outcomes</div>
       <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,52px);color:var(--cream);line-height:1.05;letter-spacing:-0.3px;">What actually changes.</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.06);border-radius:24px;overflow:hidden;">
+    <div class="outcomes-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.06);border-radius:24px;overflow:hidden;">
       <div style="padding:44px 36px;background:rgba(255,255,255,0.03);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
         <div style="font-family:'DM Serif Display',serif;font-size:56px;color:#7ac95a;line-height:1;margin-bottom:12px;letter-spacing:-1px;">78%</div>
         <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Feel more energised</div>
@@ -1240,7 +1311,7 @@ function submitContact(){
       <button id="tab-android" onclick="switchTab('android')" style="padding:14px 20px;border:none;border-bottom:2px solid transparent;background:transparent;font-size:14px;font-weight:500;color:#6b6b68;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:-1px;">Other Android</button>
       <button id="tab-xiaomi" onclick="switchTab('xiaomi')" style="padding:14px 20px;border:none;border-bottom:2px solid transparent;background:transparent;font-size:14px;font-weight:500;color:#6b6b68;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:-1px;">Xiaomi / Redmi</button>
     </div>
-    <div style="padding:28px 36px;">
+    <div class="modal-body" style="padding:28px 36px;">
 
       <div id="steps-samsung">
         <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
@@ -1461,6 +1532,64 @@ document.getElementById('download-overlay').addEventListener('click',function(e)
     #page-story [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
   }
 </style>
+
+
+<style>
+@media(max-width:768px){
+  /* OUTCOMES - stack to single column */
+  .outcomes-grid{grid-template-columns:1fr!important;}
+  .outcomes-grid>div{border-left:none!important;border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .outcomes-grid>div:last-child{border-bottom:none;}
+
+  /* FAQ padding */
+  .faq-section{padding:64px 20px!important;}
+
+  /* DOWNLOAD MODAL */
+  .modal-body{padding:20px!important;}
+  #download-overlay{padding:12px!important;}
+  #download-overlay>div{border-radius:20px!important;}
+  #download-overlay>div>div:first-child{padding:24px 20px 20px!important;border-radius:20px 20px 0 0!important;}
+  #download-overlay [style*="padding:0 36px"]{padding:0 20px!important;}
+
+  /* CONTACT PAGE */
+  .contact-grid{grid-template-columns:1fr!important;gap:32px!important;}
+  #page-contact>div:last-of-type{padding:48px 20px!important;}
+
+  /* OUR STORY */
+  #page-story>div:nth-child(3){padding:40px 20px!important;}
+  #page-story [style*="grid-template-columns:160px"]{display:block!important;}
+  #page-story [style*="padding:64px 0"]{padding:40px 0!important;}
+  #page-story [style*="font-size:72px"]{font-size:44px!important;margin-bottom:6px!important;}
+  #page-story [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+  #page-story [style*="padding:32px 36px"]{padding:24px 20px!important;}
+  #page-story [style*="padding:64px 40px"]{padding:48px 20px!important;}
+  #page-story [style*="padding:140px 40px"]{padding:120px 20px 60px!important;}
+  #page-story [style*="font-size:19px"]{font-size:16px!important;}
+  #page-story [style*="font-size:17px"]{font-size:15px!important;}
+
+  /* OUR STORY stat strip */
+  #page-story [style*="border-right:1px solid rgba(255,255,255,0.15)"]{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.15)!important;}
+
+  /* HERO sub-page */
+  #page-contact .legal-hero-inner,
+  #page-privacy .legal-hero-inner,
+  #page-terms .legal-hero-inner{padding:0!important;}
+}
+</style>
+
+<script>
+function toggleMenu(){
+  var menu=document.getElementById('mobile-menu');
+  menu.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+// Close menu when scrolling
+window.addEventListener('scroll',function(){
+  document.getElementById('mobile-menu').classList.remove('open');
+},{passive:true});
+</script>
 
 </body>
 </html>
