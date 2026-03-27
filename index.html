@@ -1294,6 +1294,12 @@ function submitContact(){
 <style>#download-overlay > div::-webkit-scrollbar{display:none;}</style>
 <script>
 function showDownload(){
+  var a=document.createElement('a');
+  a.href='https://resetly-website.vercel.app/app-release.apk';
+  a.download='WeeklyReset.apk';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
   document.getElementById('download-overlay').style.display='flex';
   document.getElementById('download-overlay').style.alignItems='center';
   document.getElementById('download-overlay').style.justifyContent='center';
