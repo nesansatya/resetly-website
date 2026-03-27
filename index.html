@@ -1591,5 +1591,137 @@ window.addEventListener('scroll',function(){
 },{passive:true});
 </script>
 
+
+<style>
+@media(max-width:768px){
+
+  /* ── 1. HERO ── */
+  /* "Prefer web version" link wraps oddly — centre it on mobile */
+  .hero-left>div[style*="margin-top:12px"]{text-align:center;}
+
+  /* Social proof text wraps too tight on 375px */
+  .social-proof{flex-wrap:wrap;gap:8px;}
+  .social-proof-text{font-size:13px;}
+
+  /* ── 2. TRUST BAR ── */
+  /* Items too spaced on small screens — tighten padding */
+  .trust-item{padding:0 24px;}
+  .trust-num{font-size:17px;}
+  .trust-label{font-size:11px;}
+
+  /* ── 3. FEATURES ── */
+  /* Feature grid 2-col → 1-col on mobile */
+  .feature-hero-card{grid-template-columns:1fr!important;}
+  /* Inner 2-col feature cards grid → 1-col */
+  [style*="grid-template-columns:1fr 1fr;gap:2px"]{
+    grid-template-columns:1fr!important;
+  }
+  .feature-card{padding:28px 24px!important;}
+  /* Feature hero desc font size */
+  .feature-hero-desc{font-size:15px!important;}
+
+  /* ── 4. CURRENCY TOGGLE ── */
+  /* Wraps or overflows on very small screens */
+  [style*="width:fit-content"]{width:100%!important;justify-content:center!important;}
+
+  /* ── 5. PRICING ── */
+  /* Pricing card padding too large on mobile */
+  .pricing-card{padding:28px 24px!important;}
+  /* Featured badge can clip on narrow screens */
+  .featured-badge{font-size:11px;padding:5px 14px;}
+
+  /* ── 6. SECTION TITLES ── */
+  /* Reduce section sub font on mobile */
+  .section-sub{font-size:16px!important;}
+
+  /* ── 7. CONTACT PAGE ── */
+  /* Inner contact card padding tight on mobile */
+  #page-contact [style*="padding:32px"]{padding:24px 20px!important;}
+  /* Instagram/Facebook buttons — stack on mobile */
+  #page-contact [style*="display:flex;gap:12px"]{flex-direction:column!important;}
+  /* Contact form card padding */
+  #page-contact [style*="padding:40px"]{padding:24px 20px!important;}
+  /* Bottom sign-off padding */
+  #page-contact [style*="padding-top:48px"]{padding:32px 20px 0!important;}
+  /* Contact page background section */
+  #page-contact>div[style*="padding:80px 40px"]{padding:48px 20px!important;}
+
+  /* ── 8. LEGAL PAGES ── */
+  /* Legal section padding tighter on mobile */
+  .legal-section{padding:24px 0!important;}
+  .legal-section h2{font-size:19px!important;}
+
+  /* ── 9. DEMO SECTION ── */
+  /* Demo phone — centre properly and don't overflow */
+  .demo-phone{width:260px!important;}
+  /* Demo steps text size */
+  .demo-step-title{font-size:15px!important;}
+  .demo-step-desc{font-size:13px!important;}
+
+  /* ── 10. DOWNLOAD MODAL TABS ── */
+  /* Tab labels too tight on 375px */
+  #tab-samsung,#tab-android,#tab-xiaomi{
+    padding:12px 12px!important;
+    font-size:13px!important;
+  }
+  /* Modal header */
+  #download-overlay>div>div:first-child{
+    padding:24px 20px 20px!important;
+  }
+  /* Modal tab container */
+  #download-overlay [style*="padding:0 36px"]{
+    padding:0 16px!important;
+  }
+
+  /* ── 11. TESTIMONIALS ── */
+  /* Testimonial card padding slightly tighter */
+  .testimonial-card{padding:22px!important;}
+
+  /* ── 12. CTA SECTION ── */
+  /* CTA buttons stack and full width on mobile */
+  .cta-actions{flex-direction:column;align-items:stretch!important;}
+  .cta-actions .btn-primary{justify-content:center;}
+  .cta-actions .btn-secondary{justify-content:center;}
+
+  /* ── 13. FOOTER ── */
+  /* Footer columns wrap more naturally */
+  .footer-links{flex-direction:column;gap:24px!important;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:16px!important;}
+
+  /* ── 14. FLOATING BAR ── */
+  /* On mobile the bar should be full width clean row */
+  .floating-bar{flex-wrap:nowrap!important;}
+  .floating-bar-left{flex:1;min-width:0;}
+  .floating-bar-title{font-size:13px!important;}
+  .floating-bar-icon{width:36px!important;height:36px!important;font-size:16px!important;}
+
+  /* ── 15. OUR STORY ── */
+  /* Hero headline on story page */
+  #page-story h1{font-size:clamp(36px,9vw,52px)!important;}
+  /* Stat strip — 2 column grid on mobile instead of 4 */
+  #page-story [style*="display:flex;gap:0;flex-wrap:wrap"]>div{
+    flex:0 0 50%!important;
+    border-right:none!important;
+    border-bottom:1px solid rgba(255,255,255,0.15)!important;
+  }
+  #page-story [style*="display:flex;gap:0;flex-wrap:wrap"]>div:nth-child(odd){
+    border-right:1px solid rgba(255,255,255,0.15)!important;
+  }
+  #page-story [style*="display:flex;gap:0;flex-wrap:wrap"]>div:nth-last-child(-n+2){
+    border-bottom:none!important;
+  }
+  /* Quote card padding */
+  #page-story [style*="padding:32px 36px"]{padding:24px 20px!important;}
+  /* Chapter number font */
+  #page-story [style*="font-size:72px"]{font-size:40px!important;}
+  /* Download CTA in story page — stack buttons */
+  #page-story [style*="display:flex;gap:16px;align-items:center"]{
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:12px!important;
+  }
+}
+</style>
+
 </body>
 </html>
