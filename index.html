@@ -295,6 +295,9 @@ footer{background:var(--dark);padding:60px 40px 40px;}
   .floating-bar-btn{padding:10px 20px;font-size:13px;}
 }
 
+/* Hide all sub-pages by default - JS shows them */
+#page-privacy,#page-terms,#page-contact,#page-story{display:none!important;}
+
 /* ANIMATIONS */
 .fade-up{opacity:1;transform:translateY(0);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade-up:nth-child(2){transition-delay:0.1s;}
@@ -328,11 +331,21 @@ footer{background:var(--dark);padding:60px 40px 40px;}
   .legal-hero{padding:100px 20px 48px;}
   .legal-body{padding:40px 20px 80px;}
 }
+
+.legal-back{display:inline-flex;align-items:center;gap:6px;color:rgba(250,248,244,0.5);text-decoration:none;font-size:14px;font-weight:500;margin-bottom:24px;transition:color 0.2s;}
+.legal-back:hover{color:var(--cream);}
 </style>
 </head>
 <body>
-
-<div id="main-content">
+<nav>
+  <a href="index.html" class="nav-logo">Weekly <span>Reset</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#how-it-works">How it works</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="#" onclick="if(window.showDownload)showDownload();return false;" class="nav-cta">Download App &rarr;</a></li>
+  </ul>
+</nav>
 <nav>
   <a href="#" class="nav-logo">Weekly <span>Reset</span></a>
   <ul class="nav-links">
@@ -956,17 +969,17 @@ function toggleFaq(btn){
         <div class="footer-col">
           <h4>Company</h4>
           <ul>
-            <li><a href="https://resetly.my">resetly.my</a></li>
+            <li><a href="#" href="story.html">Our Story</a></li>
             <li><a href="https://www.instagram.com/resetlyapp/">Instagram</a></li>
             <li><a href="https://www.facebook.com/resetlyapp/">Facebook</a></li>
-            <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+            <li><a href="#" href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
           <ul>
-            <li><a href="#" onclick="showPage('privacy');return false;">Privacy policy</a></li>
-            <li><a href="#" onclick="showPage('terms');return false;">Terms of service</a></li>
+            <li><a href="#" href="privacy.html">Privacy policy</a></li>
+            <li><a href="#" href="terms.html">Terms of service</a></li>
           </ul>
         </div>
       </div>
@@ -980,261 +993,6 @@ function toggleFaq(btn){
     </div>
   </div>
 </footer>
-</div><!-- end main-content -->
-
-<!-- PRIVACY POLICY PAGE -->
-<div id="page-privacy" style="display:none;">
-  <div class="legal-hero">
-    <div class="legal-hero-inner">
-      <a href="#" onclick="showPage('home');return false;" class="legal-back">&larr; Back to home</a>
-      <div class="section-label">Legal</div>
-      <h1 class="section-title">Privacy Policy</h1>
-      <p class="legal-meta">Effective Date: 25 March 2026 &nbsp;&middot;&nbsp; Version 1.0 &nbsp;&middot;&nbsp; Governed by PDPA 2010 (Malaysia)</p>
-    </div>
-  </div>
-  <div class="legal-body"><div class="legal-content">
-    <div class="legal-section"><h2>1. Introduction</h2><p>Weekly Reset ("the App") is operated by Resetly ("we", "our", "us"), accessible at resetly.my. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data in accordance with the Personal Data Protection Act 2010 (PDPA) of Malaysia.</p><p>By using the App, you consent to the collection and use of your data as described in this Privacy Policy. If you do not agree, please discontinue use of the App immediately.</p></div>
-    <div class="legal-section"><h2>2. Data We Collect</h2><p>We collect the following categories of personal data:</p><ul><li><strong>Account data:</strong> Full name, email address, and password (stored securely via Supabase Auth)</li><li><strong>Health and wellness data:</strong> Body weight, health goals, daily mood and energy levels, exercise completion records, habit logs, and streak data</li><li><strong>Usage data:</strong> Login timestamps, feature usage, and app interactions</li><li><strong>Payment data:</strong> Subscription status and billing information &mdash; processed and stored securely by Stripe. We do not store your card details on our servers</li></ul></div>
-    <div class="legal-section"><h2>3. How We Use Your Data</h2><ul><li>To provide and personalise the App's wellness features</li><li>To calculate your personalised hydration goal and workout recommendations</li><li>To track your progress, streaks, and habit consistency</li><li>To process your Pro subscription payments via Stripe</li><li>To communicate service updates, account information, and support responses</li><li>To improve the App based on usage patterns (aggregated, anonymised data only)</li></ul></div>
-    <div class="legal-section"><h2>4. Legal Basis for Processing</h2><ul><li><strong>Consent:</strong> You provide explicit consent upon registration</li><li><strong>Contractual necessity:</strong> Processing is required to deliver the services you have subscribed to</li><li><strong>Legitimate interests:</strong> To maintain App security, prevent fraud, and improve our services</li></ul></div>
-    <div class="legal-section"><h2>5. Data Sharing and Disclosure</h2><p>We do not sell your personal data to third parties. We share your data only with:</p><ul><li><strong>Supabase</strong> (database and authentication provider) &mdash; for secure data storage</li><li><strong>Stripe</strong> (payment processor) &mdash; for subscription billing</li><li><strong>Vercel</strong> (hosting provider) &mdash; for App delivery</li></ul><p>We may disclose your data if required by Malaysian law, court order, or governmental authority.</p></div>
-    <div class="legal-section"><h2>6. Data Retention</h2><p>We retain your personal data for as long as your account is active. If you delete your account, your personal data will be permanently deleted within 30 days, except where retention is required by law.</p></div>
-    <div class="legal-section"><h2>7. Your Rights Under PDPA 2010</h2><ul><li>Access the personal data we hold about you</li><li>Correct inaccurate or incomplete personal data</li><li>Withdraw consent for data processing</li><li>Request deletion of your personal data</li></ul><p>To exercise any of these rights, contact us at <a href="/cdn-cgi/l/email-protection#ec80898b8d80ac9e899f89988095c28195"><span class="__cf_email__" data-cfemail="8ee2ebe9efe2cefcebfdebfae2f7a0e3f7">[email&#160;protected]</span></a>. We will respond within 21 days.</p></div>
-    <div class="legal-section"><h2>8. Data Security</h2><p>We implement appropriate technical and organisational measures to protect your personal data, including encrypted connections (HTTPS), row-level security in our database, and secure authentication via JWT tokens.</p></div>
-    <div class="legal-section"><h2>9. Children's Privacy</h2><p>The App is not intended for individuals under 18 years of age. If you believe a minor has provided us with personal data, contact us immediately at <a href="/cdn-cgi/l/email-protection#6a060f0d0b062a180f190f1e0613440713"><span class="__cf_email__" data-cfemail="4f232a282e230f3d2a3c2a3b2336612236">[email&#160;protected]</span></a>.</p></div>
-    <div class="legal-section"><h2>10. Changes to This Policy</h2><p>We may update this Privacy Policy from time to time. We will notify you of significant changes via email or in-app notification.</p></div>
-    <div class="legal-section"><h2>11. Contact Us</h2><p>For any privacy-related queries:</p><div class="legal-contact-box"><strong>Resetly</strong><br>Email: <a href="/cdn-cgi/l/email-protection#18747d7f7974586a7d6b7d6c7461367561"><span class="__cf_email__" data-cfemail="274b4240464b6755425442534b5e094a5e">[email&#160;protected]</span></a><br>Website: <a href="https://resetly.my">resetly.my</a></div></div>
-  </div></div>
-</div>
-
-<!-- TERMS OF SERVICE PAGE -->
-<div id="page-terms" style="display:none;">
-  <div class="legal-hero">
-    <div class="legal-hero-inner">
-      <a href="#" onclick="showPage('home');return false;" class="legal-back">&larr; Back to home</a>
-      <div class="section-label">Legal</div>
-      <h1 class="section-title">Terms of Service</h1>
-      <p class="legal-meta">Effective Date: 25 March 2026 &nbsp;&middot;&nbsp; Version 1.0 &nbsp;&middot;&nbsp; Governed by Malaysian Law</p>
-    </div>
-  </div>
-  <div class="legal-body"><div class="legal-content">
-    <div class="legal-section"><h2>1. Acceptance of Terms</h2><p>By accessing or using Weekly Reset ("the App"), operated by Resetly at resetly.my, you agree to be bound by these Terms of Service and all applicable Malaysian laws and regulations.</p></div>
-    <div class="legal-section"><h2>2. Description of Service</h2><p>Weekly Reset is a wellness application that provides structured bodyweight workout plans, daily habit tracking, mood and energy logging, hydration tracking, meal guidance, and progress analytics.</p><ul><li><strong>Free Tier:</strong> Full access to core wellness features at no cost</li><li><strong>Pro Tier:</strong> Advanced personalisation features at RM19.90/month or RM159/year ($4.99/month or $39/year USD)</li></ul></div>
-    <div class="legal-section"><h2>3. Account Registration</h2><p>You must register with a valid email address and password. You are responsible for maintaining the confidentiality of your credentials and all activities under your account. You must be at least 18 years of age.</p></div>
-    <div class="legal-section"><h2>4. Pro Subscription and Billing</h2><p>Pro subscriptions are billed on a recurring basis via Stripe. Fees are non-refundable except:</p><ul><li>You experienced a technical error preventing access to Pro features we cannot resolve within 7 business days</li><li>You were charged incorrectly due to a billing error on our part</li><li>You submit a refund request within 7 days of your initial subscription with a valid reason, at our sole discretion</li></ul><p>To request a refund, contact <a href="/cdn-cgi/l/email-protection#eb878e8c8a87ab998e988e9f8792c58692"><span class="__cf_email__" data-cfemail="38545d5f5954784a5d4b5d4c5441165541">[email&#160;protected]</span></a>. You may cancel at any time via the billing portal in the App.</p></div>
-    <div class="legal-section"><h2>5. Acceptable Use</h2><ul><li>Do not use the App for any unlawful purpose or in violation of Malaysian law</li><li>Do not attempt to reverse engineer, decompile, or tamper with the App</li><li>Do not share your account credentials with others</li></ul></div>
-    <div class="legal-section"><h2>6. Health and Medical Disclaimer</h2><div class="legal-highlight">Weekly Reset provides general wellness information and structured fitness guidance. The App is not a substitute for professional medical advice, diagnosis, or treatment. Before beginning any exercise programme, particularly if you have existing health conditions, consult a qualified medical professional. By using the App, you acknowledge that you do so at your own risk.</div></div>
-    <div class="legal-section"><h2>7. Intellectual Property</h2><p>All content within the App is the intellectual property of Resetly and is protected under Malaysian copyright law. You may not reproduce, distribute, or create derivative works without our written permission.</p></div>
-    <div class="legal-section"><h2>8. Limitation of Liability</h2><p>To the fullest extent permitted by Malaysian law, Resetly shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the App. Our total liability shall not exceed the amount you paid us in the 3 months preceding the claim.</p></div>
-    <div class="legal-section"><h2>9. Termination</h2><p>We reserve the right to suspend or terminate your account at any time if you violate these Terms. You may delete your account at any time from the Profile page in the App.</p></div>
-    <div class="legal-section"><h2>10. Governing Law</h2><p>These Terms are governed by the laws of Malaysia, subject to the Consumer Protection Act 1999 (CPA 1999) and the Personal Data Protection Act 2010 (PDPA 2010).</p></div>
-    <div class="legal-section"><h2>11. Changes to Terms</h2><p>We will notify you of material changes at least 14 days before they take effect. Continued use constitutes acceptance.</p></div>
-    <div class="legal-section"><h2>12. Contact Us</h2><div class="legal-contact-box"><strong>Resetly</strong><br>Email: <a href="/cdn-cgi/l/email-protection#b0dcd5d7d1dcf0c2d5c3d5c4dcc99eddc9"><span class="__cf_email__" data-cfemail="a2cec7c5c3cee2d0c7d1c7d6cedb8ccfdb">[email&#160;protected]</span></a><br>Website: <a href="https://resetly.my">resetly.my</a></div></div>
-  </div></div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function showPage(page){
-  document.getElementById('main-content').style.display=page==='home'?'block':'none';
-  document.getElementById('page-privacy').style.display=page==='privacy'?'block':'none';
-  document.getElementById('page-terms').style.display=page==='terms'?'block':'none';
-  document.getElementById('page-contact').style.display=page==='contact'?'block':'none';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-
-var barDismissed = false;
-function dismissBar(){
-  barDismissed = true;
-  document.getElementById('floating-bar').classList.remove('visible');
-}
-window.addEventListener('scroll', function(){
-  if(barDismissed) return;
-  var hero = document.querySelector('.hero');
-  if(!hero) return;
-  var heroBottom = hero.getBoundingClientRect().bottom;
-  var bar = document.getElementById('floating-bar');
-  if(heroBottom < 0){
-    bar.classList.add('visible');
-  } else {
-    bar.classList.remove('visible');
-  }
-});
-
-var demoName='Nesh';
-var demoGoal='More energy';
-function updateName(val){
-  demoName=val.trim()||'Nesh';
-  var dn=document.getElementById('dash-name');if(dn)dn.textContent=demoName;
-  var sg=document.getElementById('summary-greeting');if(sg)sg.textContent='Your first week, '+demoName+'!';
-  var sm=document.getElementById('summary-msg');if(sm)sm.innerHTML='<strong>You showed up 5 days.</strong> That\'s better than most people manage in a month. Keep going, '+demoName+'.';
-}
-function selectGoal(el,goal){
-  demoGoal=goal;
-  document.querySelectorAll('.goal-btn').forEach(function(b){b.classList.remove('active');});
-  el.classList.add('active');
-  var gp=document.getElementById('dash-goal-pill');if(gp)gp.textContent='Goal: '+goal;
-}
-function setStep(n){
-  document.querySelectorAll('.demo-step').forEach(function(el,i){el.classList.toggle('active',i===n);});
-  document.querySelectorAll('.demo-slide').forEach(function(el,i){el.classList.toggle('active',i===n);});
-  document.querySelectorAll('.demo-dot').forEach(function(el,i){el.classList.toggle('active',i===n);});
-  var pcts=['25%','50%','75%','100%'];
-  var dp=document.getElementById('demo-progress');if(dp)dp.style.width=pcts[n];
-  if(n===1){
-    var dn=document.getElementById('dash-name');if(dn)dn.textContent=demoName;
-    var gp=document.getElementById('dash-goal-pill');if(gp)gp.textContent='Goal: '+demoGoal;
-  }
-  if(n===3){
-    var sg=document.getElementById('summary-greeting');if(sg)sg.textContent='Your first week, '+demoName+'!';
-    var sm=document.getElementById('summary-msg');if(sm)sm.innerHTML='<strong>You showed up 5 days.</strong> That\'s better than most people manage in a month. Keep going, '+demoName+'.';
-  }
-}
-function selectMood(mood){
-  document.querySelectorAll('.mood-tap-btn').forEach(function(el){el.classList.remove('active');});
-  document.getElementById('mood-'+mood).classList.add('active');
-  var configs={
-    low:{bg:'rgba(239,153,123,0.08)',border:'rgba(216,90,48,0.15)',title:'Taking it slow today.',body:'That\'s okay. Rest is part of the process. Just drink your water and do a 5-min stretch.',tc:'#993c1d'},
-    good:{bg:'rgba(74,124,47,0.08)',border:'rgba(74,124,47,0.2)',title:'Good energy - let\'s use it.',body:'You\'re in a great state. Knock out your full workout and tick off all 6 habits today.',tc:'#4a7c2f'},
-    drained:{bg:'rgba(74,124,47,0.08)',border:'rgba(74,124,47,0.2)',title:'Rest mode activated.',body:'Light stretching and drinking your water today. That\'s it. Recovery is progress.',tc:'#4a7c2f'},
-    energy:{bg:'rgba(74,124,47,0.12)',border:'rgba(74,124,47,0.3)',title:'High energy - go harder.',body:'Add an extra set to every exercise. You\'re in the zone - don\'t waste it.',tc:'#27500a'}
-  };
-  var c=configs[mood];
-  var resp=document.getElementById('mood-response');
-  resp.style.background=c.bg;resp.style.borderColor=c.border;
-  document.getElementById('mood-response-title').style.color=c.tc;
-  document.getElementById('mood-response-title').textContent=c.title;
-  document.getElementById('mood-response-body').textContent=c.body;
-  var bg=document.getElementById('mood-screen-bg');
-  bg.style.background=c.bg;
-  setTimeout(function(){bg.style.background='transparent';},600);
-}
-
-(function(){
-  var el=document.querySelector('.phone-scroll');
-  if(!el)return;
-  var direction=1,auto=true,pauseTimer=null,pos=0,speed=0.5;
-  function step(){
-    if(auto){var max=el.scrollHeight-el.clientHeight;pos+=speed*direction;if(pos>=max){pos=max;direction=-1;}if(pos<=0){pos=0;direction=1;}el.scrollTop=pos;}
-    requestAnimationFrame(step);
-  }
-  function pauseAuto(){auto=false;clearTimeout(pauseTimer);pauseTimer=setTimeout(function(){pos=el.scrollTop;auto=true;},2500);}
-  el.addEventListener('wheel',pauseAuto,{passive:true});
-  el.addEventListener('touchstart',pauseAuto,{passive:true});
-  el.addEventListener('mouseenter',function(){auto=false;});
-  el.addEventListener('mouseleave',function(){clearTimeout(pauseTimer);pauseTimer=setTimeout(function(){pos=el.scrollTop;auto=true;},800);});
-  requestAnimationFrame(step);
-})();
-</script>
-
-<!-- CONTACT PAGE -->
-<div id="page-contact" style="display:none;">
-  <div class="legal-hero">
-    <div class="legal-hero-inner">
-      <a href="#" onclick="showPage('home');return false;" class="legal-back">&larr; Back to home</a>
-      <div class="section-label">Get in touch</div>
-      <h1 class="section-title">We're real people.<br>Talk to us.</h1>
-      <p class="legal-meta">We reply within 24 hours on weekdays. No bots. No ticket numbers. Just a real reply.</p>
-    </div>
-  </div>
-
-  <div style="background:var(--cream);padding:80px 40px;">
-    <div class="contact-grid">
-
-      <div>
-        <div style="background:white;border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px;">
-          <div style="font-size:28px;margin-bottom:16px;">&#128075;</div>
-          <p style="font-size:16px;line-height:1.8;color:var(--text-muted);">We built this because we kept quitting too. If you have a question, a problem, or just want to say hi &mdash; <strong style="color:var(--dark);">our team actually reads every message.</strong></p>
-          <div style="margin-top:16px;font-size:14px;font-weight:600;color:var(--dark);">The Weekly Reset Team</div>
-          <div style="font-size:13px;color:var(--text-muted);">Built with love in Malaysia</div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
-          <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:16px;">
-            <div style="width:44px;height:44px;background:var(--green-pale);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#128172;</div>
-            <div><div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px;">Support</div><div style="font-size:13px;color:var(--text-muted);">App issues, billing, account help</div><a href="/cdn-cgi/l/email-protection#30434540405f42447042554355445c491e5d49" style="font-size:13px;color:var(--green);text-decoration:none;font-weight:500;"><span class="__cf_email__" data-cfemail="04777174746b7670447661776170687d2a697d">[email&#160;protected]</span></a></div>
-          </div>
-          <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:16px;">
-            <div style="width:44px;height:44px;background:var(--green-pale);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#128161;</div>
-            <div><div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px;">Feedback</div><div style="font-size:13px;color:var(--text-muted);">Ideas, suggestions, feature requests</div><a href="/cdn-cgi/l/email-protection#a0c8c5cccccfe0d2c5d3c5d4ccd98ecdd9" style="font-size:13px;color:var(--green);text-decoration:none;font-weight:500;"><span class="__cf_email__" data-cfemail="620a070e0e0d2210071107160e1b4c0f1b">[email&#160;protected]</span></a></div>
-          </div>
-          <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:16px;">
-            <div style="width:44px;height:44px;background:var(--green-pale);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#129309;</div>
-            <div><div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px;">Partnership</div><div style="font-size:13px;color:var(--text-muted);">Collabs, press, business enquiries</div><a href="/cdn-cgi/l/email-protection#3058555c5c5f7042554355445c491e5d49" style="font-size:13px;color:var(--green);text-decoration:none;font-weight:500;"><span class="__cf_email__" data-cfemail="244c4148484b645641574150485d0a495d">[email&#160;protected]</span></a></div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:12px;">
-          <a href="https://www.instagram.com/resetlyapp/" style="display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-radius:100px;padding:10px 18px;font-size:13px;font-weight:500;color:var(--dark);text-decoration:none;">&#128247; Instagram</a>
-          <a href="https://www.facebook.com/resetlyapp/" style="display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-radius:100px;padding:10px 18px;font-size:13px;font-weight:500;color:var(--dark);text-decoration:none;">&#128101; Facebook</a>
-        </div>
-      </div>
-
-      <div style="background:white;border:1px solid var(--border);border-radius:24px;padding:40px;">
-        <div style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--dark);margin-bottom:8px;">Send us a message</div>
-        <div style="font-size:14px;color:var(--text-muted);margin-bottom:32px;">We'll get back to you within 24 hours.</div>
-
-        <div id="contact-form">
-          <div style="margin-bottom:16px;">
-            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Your name</label>
-            <input id="cf-name" type="text" placeholder="e.g. Nesh" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--dark);background:#faf8f4;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#4a7c2f'" onblur="this.style.borderColor='rgba(44,44,42,0.12)'" />
-          </div>
-          <div style="margin-bottom:16px;">
-            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Your email</label>
-            <input id="cf-email" type="email" placeholder="you@email.com" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--dark);background:#faf8f4;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#4a7c2f'" onblur="this.style.borderColor='rgba(44,44,42,0.12)'" />
-          </div>
-          <div style="margin-bottom:16px;">
-            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">What is this about?</label>
-            <select id="cf-topic" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--dark);background:#faf8f4;outline:none;box-sizing:border-box;cursor:pointer;">
-              <option value="">Select a topic</option>
-              <option value="Support">Support &mdash; App issue or billing</option>
-              <option value="Feedback">Feedback &mdash; Ideas or suggestions</option>
-              <option value="Partnership">Partnership &mdash; Business enquiry</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div style="margin-bottom:24px;">
-            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Your message</label>
-            <textarea id="cf-message" placeholder="Tell us what's on your mind..." rows="5" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--dark);background:#faf8f4;outline:none;box-sizing:border-box;resize:vertical;" onfocus="this.style.borderColor='#4a7c2f'" onblur="this.style.borderColor='rgba(44,44,42,0.12)'"></textarea>
-          </div>
-          <button onclick="submitContact()" style="width:100%;background:#1a1a18;color:#faf8f4;border:none;border-radius:100px;padding:16px;font-size:16px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;" onmouseover="this.style.background='#4a7c2f'" onmouseout="this.style.background='#1a1a18'">Send message &rarr;</button>
-        </div>
-
-        <div id="contact-success" style="display:none;text-align:center;padding:40px 20px;">
-          <div style="font-size:48px;margin-bottom:16px;">&#10084;&#65039;</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--dark);margin-bottom:10px;">Message sent!</div>
-          <p style="font-size:15px;color:var(--text-muted);line-height:1.7;">Thanks for reaching out. We'll get back to you within 24 hours.</p>
-          <a href="https://weekly-reset.vercel.app/signup" style="display:inline-block;margin-top:20px;background:#1a1a18;color:#faf8f4;border-radius:100px;padding:12px 28px;font-size:14px;font-weight:600;text-decoration:none;">Try Weekly Reset &rarr;</a>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="max-width:1100px;margin:48px auto 0;text-align:center;padding-top:48px;border-top:1px solid var(--border);">
-      <p style="font-size:15px;color:var(--text-muted);">No bots. No ticket numbers. Just a real reply from a real team that cares about your reset.</p>
-    </div>
-  </div>
-</div>
-
-<style>
-  .contact-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-  @media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:40px;}#page-contact>div{padding:48px 20px;}}
-</style>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function submitContact(){
-  var name=document.getElementById('cf-name').value.trim();
-  var email=document.getElementById('cf-email').value.trim();
-  var topic=document.getElementById('cf-topic').value;
-  var msg=document.getElementById('cf-message').value().trim();
-  if(!name||!email||!topic||!msg){alert('Please fill in all fields before sending.');return;}
-  var mailto='mailto:hello@resetly.my?subject='+encodeURIComponent('['+topic+'] Message from '+name)+'&body='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nTopic: '+topic+'\n\nMessage:\n'+msg);
-  window.location.href=mailto;
-  document.getElementById('contact-form').style.display='none';
-  document.getElementById('contact-success').style.display='block';
-}
-</script>
-
 <!-- DOWNLOAD MODAL -->
 <div id="download-overlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,26,24,0.75);z-index:999;align-items:center;justify-content:center;padding:20px;">
   <div style="background:#faf8f4;border-radius:28px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;scrollbar-width:none;-ms-overflow-style:none;">
@@ -1330,6 +1088,197 @@ document.getElementById('download-overlay').addEventListener('click',function(e)
   if(e.target===this)closeDownload();
 });
 </script>
+
+<!-- OUR STORY PAGE -->
+<div id="page-story" style="display:none;">
+
+  <!-- Dark hero -->
+  <div style="background:#1a1a18;padding:0;position:relative;overflow:hidden;min-height:480px;display:flex;align-items:flex-end;">
+    <div style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;">
+      <svg width="100%" height="100%" viewBox="0 0 1200 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <circle cx="900" cy="100" r="400" fill="rgba(74,124,47,0.05)"/>
+        <circle cx="100" cy="400" r="300" fill="rgba(74,124,47,0.04)"/>
+        <circle cx="600" cy="240" r="200" fill="rgba(74,124,47,0.03)"/>
+      </svg>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:140px 40px 80px;position:relative;z-index:1;">
+      <a href="#" onclick="showPage('home');return false;" class="legal-back">&larr; Back to home</a>
+      <div style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(74,124,47,0.9);margin-bottom:20px;margin-top:24px;">Our story</div>
+      <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,80px);color:#faf8f4;line-height:1.0;letter-spacing:-1px;margin-bottom:28px;">We were part of<br>the <em style="color:#7ac95a;font-style:italic;">statistic.</em></h1>
+      <p style="font-size:19px;line-height:1.75;color:rgba(250,248,244,0.55);max-width:620px;">The average person tries and quits a fitness routine 4 times a year. We know this because we lived it. Weekly Reset was built from that failure &mdash; not in spite of it.</p>
+    </div>
+  </div>
+
+  <!-- Quit counter stat strip -->
+  <div style="background:#4a7c2f;padding:24px 40px;">
+    <div style="max-width:1000px;margin:0 auto;display:flex;gap:0;flex-wrap:wrap;">
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;border-right:1px solid rgba(255,255,255,0.15);">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">4x</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">Average quits per year</div>
+      </div>
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;border-right:1px solid rgba(255,255,255,0.15);">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">3</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">Days average before quitting</div>
+      </div>
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;border-right:1px solid rgba(255,255,255,0.15);">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">$0</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">Should cost to start</div>
+      </div>
+      <div style="flex:1;min-width:160px;text-align:center;padding:8px 20px;">
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;">1</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">App built to fix this</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story chapters -->
+  <div style="background:#faf8f4;padding:80px 40px;">
+    <div style="max-width:1000px;margin:0 auto;">
+
+      <!-- Chapter 01 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">01</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">The problem</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">We lived the problem<br>before we solved it.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We weren't athletes. We were regular people who kept downloading fitness apps, feeling instantly overwhelmed, and quitting by day three. Every single time.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">Every app we tried assumed we were already motivated. They were built for the version of us we wanted to be &mdash; not the version that existed on a Tuesday night after a long day of work, scrolling through a 47-exercise programme wondering where to even begin.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;">The gym was expensive. The personal trainers were more expensive. And every "free" app had a paywall on the third screen. We were tired of it. So we decided to do something about it.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 02 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">02</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">The research</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">The answer wasn't<br>willpower. It was friction.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We spent months understanding why people quit. Not why they start &mdash; that part is easy. Everyone starts. The question was why they stop, and why they always stop at the same point.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">The pattern was clear. Too many features. Too much guilt when you miss a day. No personalisation for bad days. Apps that respond to "I'm exhausted and low" with "here's your 45-minute HIIT session."</p>
+          <div style="background:#eaf3de;border-left:3px solid #4a7c2f;border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0;">
+            <p style="font-size:16px;line-height:1.75;color:#3b6d11;font-style:italic;">"What if the app could read how you feel today &mdash; and actually respond to that instead of just ignoring it?"</p>
+          </div>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;">That question became the entire product philosophy. Every feature in Weekly Reset was built to answer it.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 03 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">03</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">The build</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">From blank screen<br>to live app. One session.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We built Weekly Reset from scratch &mdash; zero to live web app, Android APK, and payment processing &mdash; in a single extended session. No agency. No massive team. Just relentless focus and a clear vision.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:24px;">Every decision was weighed against one question: <strong style="color:#1a1a18;">does this make it easier or harder to quit?</strong> If a feature added friction, it was cut. If a screen felt overwhelming, it was simplified. We do things right from the start &mdash; or we don't do them at all.</p>
+          <!-- Timeline -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;gap:20px;align-items:flex-start;padding-bottom:20px;">
+              <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:12px;height:12px;border-radius:50%;background:#4a7c2f;margin-top:4px;flex-shrink:0;"></div><div style="width:1px;flex:1;background:rgba(74,124,47,0.2);margin-top:6px;min-height:32px;"></div></div>
+              <div><div style="font-size:14px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Phase 1 &mdash; The free version</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Full web app with dashboard, habits, mood coaching, water tracker, meal guide and progress screen.</div></div>
+            </div>
+            <div style="display:flex;gap:20px;align-items:flex-start;padding-bottom:20px;">
+              <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:12px;height:12px;border-radius:50%;background:#4a7c2f;margin-top:4px;flex-shrink:0;"></div><div style="width:1px;flex:1;background:rgba(74,124,47,0.2);margin-top:6px;min-height:32px;"></div></div>
+              <div><div style="font-size:14px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Phase 2 &mdash; Monetisation</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Stripe payments, Pro features, custom workout builder, extended history and billing portal.</div></div>
+            </div>
+            <div style="display:flex;gap:20px;align-items:flex-start;">
+              <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:12px;height:12px;border-radius:50%;background:#4a7c2f;margin-top:4px;flex-shrink:0;"></div></div>
+              <div><div style="font-size:14px;font-weight:600;color:#1a1a18;margin-bottom:2px;">Phase 3 &mdash; Android app</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Native Android APK via Capacitor. The web app became a real app on a real phone.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 04 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">04</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">Who it's for</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">Not for athletes.<br>For the rest of us.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We built this for people aged 25 to 35 who are budget-conscious, have previously tried and failed at building health routines, and want to feel better &mdash; not become an athlete.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:24px;">The person who opens the app on a bad day and needs to be told that one 10-minute walk is enough. The person who has tried every other app and always ended up back at zero. That person is who every single decision was made for.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Budget-conscious</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">No gym. No trainer. No hidden costs.</div></div>
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Previously quit</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Built for the person who keeps starting over.</div></div>
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Not an athlete</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Wants to feel better. Not win a marathon.</div></div>
+            <div style="background:white;border:1px solid rgba(44,44,42,0.1);border-radius:14px;padding:18px 20px;"><div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:4px;">Real life</div><div style="font-size:13px;color:#6b6b68;line-height:1.5;">Bad days included. The app adjusts.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 05 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid rgba(44,44,42,0.1);align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">05</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">Why it exists</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">Wellness shouldn't need<br>a membership fee.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">We believe the baseline of feeling healthy &mdash; moving your body, drinking enough water, sleeping properly, eating reasonably &mdash; should be accessible to everyone. Not just people who can afford a gym or a personal trainer.</p>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:16px;">Motivation shouldn't be a prerequisite either. Most people aren't unmotivated &mdash; they're overwhelmed. Give someone a simple structure, meet them on their bad days, and watch what happens.</p>
+          <div style="background:#1a1a18;border-radius:20px;padding:32px 36px;margin-top:8px;">
+            <p style="font-family:'DM Serif Display',serif;font-size:22px;color:#faf8f4;line-height:1.4;margin-bottom:0;"><em style="color:#7ac95a;">"One 10-minute walk on a bad day is worth more than a perfect week you never started."</em></p>
+            <div style="font-size:13px;color:rgba(250,248,244,0.4);margin-top:16px;">The philosophy behind every Weekly Reset feature.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 06 -->
+      <div style="display:grid;grid-template-columns:160px 1fr;gap:48px;padding:64px 0;align-items:start;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:72px;color:rgba(74,124,47,0.15);line-height:1;letter-spacing:-2px;">06</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#4a7c2f;margin-top:8px;">Where we're going</div>
+        </div>
+        <div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,40px);color:#1a1a18;line-height:1.1;margin-bottom:20px;letter-spacing:-0.3px;">Just getting started.</h2>
+          <p style="font-size:17px;line-height:1.85;color:#6b6b68;margin-bottom:28px;">Google Play Store. iOS. AI-powered weekly coaching. A referral system built around genuine results. Every step guided by the same north star &mdash; the simplest possible path to feeling better.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:36px;">
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:#4a7c2f;font-weight:700;">&#10003;</span> Android app &mdash; live now</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:#4a7c2f;font-weight:700;">&#10003;</span> Web app &mdash; live now</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:rgba(44,44,42,0.25);font-weight:700;">&#10003;</span> Google Play Store &mdash; coming soon</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:rgba(44,44,42,0.25);font-weight:700;">&#10003;</span> AI Weekly Check-in &mdash; coming soon</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#6b6b68;"><span style="color:rgba(44,44,42,0.25);font-weight:700;">&#10003;</span> iOS app &mdash; coming soon</div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+            <a href="#" onclick="showDownload();return false;" style="background:#1a1a18;color:#faf8f4;border-radius:100px;padding:16px 32px;font-size:16px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s;" onmouseover="this.style.background='#4a7c2f'" onmouseout="this.style.background='#1a1a18'">&#8681; Download for Android</a>
+            <a href="#" onclick="showPage('home');return false;" style="font-size:15px;font-weight:500;color:#6b6b68;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#1a1a18'" onmouseout="this.style.color='#6b6b68'">Explore the app &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom dark sign-off -->
+  <div style="background:#1a1a18;padding:64px 40px;text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+      <div style="font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,44px);color:#faf8f4;line-height:1.15;margin-bottom:16px;">We do things right<br>from the start.</div>
+      <p style="font-size:16px;color:rgba(250,248,244,0.5);line-height:1.7;margin-bottom:32px;">That's the founding philosophy. It drives every feature, every decision, every line of code. Weekly Reset isn't just an app &mdash; it's proof that the right product, built with the right values, can change how people feel about themselves.</p>
+      <div style="font-size:14px;color:rgba(250,248,244,0.3);">The Weekly Reset Team &mdash; Built with love in Malaysia &#127474;&#127486;</div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  #page-story .legal-back{color:rgba(250,248,244,0.5);}
+  #page-story .legal-back:hover{color:#faf8f4;}
+  @media(max-width:768px){
+    #page-story [style*="grid-template-columns:160px"]{display:block;}
+    #page-story [style*="font-size:72px"]{font-size:48px;margin-bottom:8px;}
+    #page-story [style*="padding:64px 0"]{padding:40px 0;}
+    #page-story>div:nth-child(3){padding:48px 20px;}
+    #page-story [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr;}
+  }
+</style>
+
 
 </body>
 </html>
